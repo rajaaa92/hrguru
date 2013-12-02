@@ -1,0 +1,13 @@
+.DS_Store
+config/database.yml
+config/sec_config.yml
+/.bundle
+/.sass-cache/
+/log/*.log*
+/tmp
+*~
+*.swp
+public/assets
+RELEASE
+coverage
+tags
