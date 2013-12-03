@@ -1,7 +1,7 @@
 # Netguru project configuration file
 rollbar:
-  post_server_item_token: "server token goes here"
-  # to get from here: https://rollbar.com/settings/project/<project_id>/access_tokens
+  read_token: '80ea84edbbe043f4a45deec7037f2f56'
+  post_server_item_token: '43abef20075143f6832de97b8512eace'
 api:
   url: "https://api.netguru.co"
   token: "30c266edccf57ae07d16c53dbbbe5970"
