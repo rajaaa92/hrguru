@@ -1,0 +1,35 @@
+development:
+  sessions:
+    default:
+      database: hrguru_dev
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
+
+test:
+  sessions:
+    default:
+      database: hrguru_test
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
+
+staging:
+  sessions:
+    default:
+      database: hrguru_staging
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
+
+production:
+  sessions:
+    default:
+      database: hrguru_production
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
