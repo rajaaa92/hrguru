@@ -2,5 +2,7 @@ defaults: &defaults
   some_normal_config: true
 development:
   <<: *defaults
-test:
+staging:
+  <<: *defaults
+production:
   <<: *defaults
