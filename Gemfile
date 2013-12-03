@@ -4,6 +4,7 @@ gem 'rails', '4.0.1'
 gem 'netguru', github: 'netguru/netguru'
 
 gem 'mongoid', github: 'mongoid/mongoid', ref: '6c8b3f'
+gem 'astrails-safe'
 
 gem 'decent_decoration'
 

@@ -51,7 +51,15 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.1)
+    astrails-safe (0.3.1)
+      aws-s3
+      cloudfiles
+      net-sftp
     atomic (1.1.14)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
     backbone-rails (1.0.0.1)
       rails (>= 3.0.0)
     builder (3.1.4)
@@ -67,6 +75,8 @@ GEM
     checker (0.6.6)
       colorize (= 0.5.8)
     chronic (0.10.2)
+    cloudfiles (1.5.0.2)
+      json
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -193,11 +203,13 @@ GEM
     whenever (0.8.4)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
+    xml-simple (1.1.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  astrails-safe
   coffee-rails (~> 4.0.0)
   decent_decoration
   haml-rails
