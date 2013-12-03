@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.1'
 gem 'netguru', github: 'netguru/netguru'
+gem 'rollbar'
 
 gem 'mongoid', github: 'mongoid/mongoid', ref: '6c8b3f'
 gem 'astrails-safe'
