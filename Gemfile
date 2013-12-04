@@ -4,6 +4,7 @@ gem 'rails', '4.0.2'
 gem 'netguru', github: 'netguru/netguru'
 gem 'rollbar'
 gem 'google-analytics-rails'
+gem 'newrelic_rpm'
 
 gem 'mongoid', github: 'mongoid/mongoid', ref: '6c8b3f'
 gem 'astrails-safe'

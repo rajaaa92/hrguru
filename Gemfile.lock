@@ -145,6 +145,7 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.6.9.171)
     origin (1.1.0)
     polyglot (0.3.3)
     pry (0.9.12.4)
@@ -221,6 +222,7 @@ DEPENDENCIES
   js_stack
   mongoid!
   netguru!
+  newrelic_rpm
   rails (= 4.0.2)
   rollbar
   sass-rails (~> 4.0.0)
