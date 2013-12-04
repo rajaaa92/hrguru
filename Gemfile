@@ -9,6 +9,7 @@ gem 'newrelic_rpm'
 gem 'mongoid', github: 'mongoid/mongoid', ref: '6c8b3f'
 gem 'astrails-safe'
 
+gem 'decent_exposure'
 gem 'decent_decoration'
 
 gem 'haml-rails'

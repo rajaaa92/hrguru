@@ -219,6 +219,7 @@ DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 4.0.0)
   decent_decoration
+  decent_exposure
   google-analytics-rails
   haml-rails
   jquery-rails

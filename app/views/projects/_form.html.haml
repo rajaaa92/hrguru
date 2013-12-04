@@ -1,0 +1,7 @@
+= form_for project do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control", placeholder: "hrguru"
+  .actions
+    = link_to 'Back', :back, class: "btn btn-default btn-sm"
+    = f.submit 'Save', class: "btn btn-success"
