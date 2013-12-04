@@ -5,4 +5,6 @@ class User
   field :first_name
   field :last_name
   field :email
+
+  has_many :memberships
 end

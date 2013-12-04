@@ -3,4 +3,6 @@ class Project
   include Mongoid::Timestamps
 
   field :name
+
+  has_many :memberships
 end
