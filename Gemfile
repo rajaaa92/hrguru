@@ -11,6 +11,10 @@ gem 'astrails-safe'
 
 gem 'decent_exposure'
 gem 'decent_decoration'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
