@@ -26,6 +26,17 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'js_stack'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+end
+
+group :development, :test do
+  gem 'pry'
+  gem 'pry-debugger'
+end
+
 group :test do
   gem 'database_cleaner'
   gem 'rspec-rails'

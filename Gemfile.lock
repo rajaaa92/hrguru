@@ -62,6 +62,12 @@ GEM
       xml-simple
     backbone-rails (1.0.0.1)
       rails (>= 3.0.0)
+    bcrypt-ruby (3.1.2)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.0.2.1)
       sass (~> 3.2)
     builder (3.1.4)
@@ -291,11 +297,14 @@ PLATFORMS
 
 DEPENDENCIES
   astrails-safe
+  better_errors
+  binding_of_caller
   bootstrap-sass
   coffee-rails (~> 4.0.0)
   database_cleaner
   decent_decoration
   decent_exposure
+  devise
   factory_girl_rails
   faker
   google-analytics-rails
