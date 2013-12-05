@@ -1,28 +1,34 @@
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require 'rspec/autorun'
+require 'spork'
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Spork.prefork do
+  ENV["RAILS_ENV"] ||= 'test'
+  require File.expand_path("../../config/environment", __FILE__)
+  require 'rspec/rails'
+  require 'rspec/autorun'
 
-RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
-  config.include Mongoid::Matchers, type: :model
-  config.include Devise::TestHelpers, type: :controller
+  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-  config.before(:suite) do
-    DatabaseCleaner[:mongoid].strategy = :truncation
+  RSpec.configure do |config|
+    config.include FactoryGirl::Syntax::Methods
+    config.include Mongoid::Matchers, type: :model
+    config.include Devise::TestHelpers, type: :controller
+
+    config.before(:suite) do
+      DatabaseCleaner[:mongoid].strategy = :truncation
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+
+    config.infer_base_class_for_anonymous_controllers = false
   end
+end
 
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
-
-  config.infer_base_class_for_anonymous_controllers = false
-
-  config.order = "random"
+Spork.each_run do
+  FactoryGirl.reload
 end

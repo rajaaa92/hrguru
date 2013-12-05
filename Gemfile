@@ -38,6 +38,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'spork-rails'
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
