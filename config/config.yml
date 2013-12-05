@@ -4,6 +4,8 @@ development:
   <<: *defaults
 test:
   <<: *defaults
+  google_client_id: ala_ma_kota
+  google_secret: a_kot_ma_ale
 staging:
   <<: *defaults
 production:
