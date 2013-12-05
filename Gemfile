@@ -21,3 +21,14 @@ gem 'therubyracer'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'js_stack'
+
+group :test do
+  gem 'mongoid-rspec'
+  gem 'faker'
+end
+
+group :development, :test do
+  gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
