@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  devise :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+  devise :database_authenticatable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   field :encrypted_password
   field :sign_in_count, type: Integer, default: 0

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  before(:each) do
+    sign_in create(:user)
+  end
+
   describe "#index" do
     render_views
 
