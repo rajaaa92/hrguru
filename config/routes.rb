@@ -9,6 +9,7 @@ Hrguru::Application.routes.draw do
   end
 
   resources :projects
+  resources :memberships, only: [:index]
 
   root 'welcome#index'
 end
