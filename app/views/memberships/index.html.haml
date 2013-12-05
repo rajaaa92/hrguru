@@ -1,0 +1,18 @@
+.nav_panel
+  .role_select
+
+  .projects_select
+
+%table
+  %tr.projects
+    %td.role
+    - projects.each do |project|
+      %td
+        = project.name
+  - roles.each do |memberships|
+    %tr
+      %td.role
+        = memberships.first.role
+      - memberships.each do |membership|
+        %td
+          = membership.decorate.user_name
