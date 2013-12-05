@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/bmabey/database_cleaner.git
-  revision: 733849482546297c48f97b292cf3ad4e498eaad0
-  specs:
-    database_cleaner (1.2.0)
-
-GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 6c8b3f2501ad12dbd453a86d3fe2374a4d14378c
   ref: 6c8b3f
@@ -94,6 +88,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     colorize (0.5.8)
+    database_cleaner (1.2.0)
     decent_decoration (0.0.6)
       decent_exposure (>= 2.0)
     decent_exposure (2.3.0)
@@ -251,7 +246,7 @@ DEPENDENCIES
   astrails-safe
   bootstrap-sass
   coffee-rails (~> 4.0.0)
-  database_cleaner!
+  database_cleaner
   decent_decoration
   decent_exposure
   factory_girl_rails
