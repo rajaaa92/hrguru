@@ -1,0 +1,27 @@
+.memberships {
+  .nav_panel {
+    width: 200px;
+    min-height: 400px;
+    float: left;
+  }
+  table {
+    td {
+      border: 1px solid #B9B9B9;
+      text-align: center;
+    }
+    tr.projects {
+      background-color: #DBDBDB;
+      td {
+        width: 160px;
+        &.role {
+          width: 100px;
+        }
+      }
+    }
+    tr:hover {
+      background-color: #E4E4E4;
+    }
+  }
+}
+
+
