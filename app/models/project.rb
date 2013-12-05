@@ -5,4 +5,6 @@ class Project
   field :name
 
   has_many :memberships
+
+  validates_presence_of :name
 end
