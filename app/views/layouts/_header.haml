@@ -1,0 +1,24 @@
+.navbar.navbar-default.navbar-static-top{ role: "navigation" }
+  .container
+    .navbar-header
+      %button.navbar-toggle{ type: "button", data: { toggle: "collapse", target: ".navbar-collapse" } }
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "Netguru People", root_path, class: "navbar-brand"
+    - if signed_in?
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li{ class: menu_class('users') }= link_to "Users", users_path
+          %li{ class: menu_class('projects') }= link_to "Projects", projects_path
+          %li{ class: menu_class('memberships') }= link_to "Memberships", memberships_path
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a#profile.dropdown-toggle{ href: '#', data: { toggle: 'dropdown' } }
+              = image_tag current_user.gravatar_url(30), class: 'img-circle'
+              = current_user.first_name
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{ href: sign_out_path, data: { method: 'delete' } } Sign out
