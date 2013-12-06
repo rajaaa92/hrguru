@@ -36,4 +36,6 @@
               %ul.dropdown-menu
                 %li
                   %a{ href: sign_out_path, data: { method: 'delete' } } Sign out
-  .container= yield
+  .container
+    = bootstrap_flash
+    = yield

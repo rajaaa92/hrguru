@@ -4,15 +4,23 @@ class ProjectsController < ApplicationController
   expose(:projects)
 
   def create
-    project.save ? redirect_to(project) : render(:new)
+    if project.save
+      redirect_to project, notice: "Project created!"
+    else
+      render :new
+    end
   end
 
   def update
-    project.save ? redirect_to(project) : render(:edit)
+    if project.save
+      redirect_to project, alert: "Project updated!"
+    else
+      render :edit
+    end
   end
 
   def destroy
-    redirect_to projects_url if project.destroy
+    redirect_to(projects_url, alert: "Project deleted!") if project.destroy
   end
 
   private
