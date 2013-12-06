@@ -7,10 +7,10 @@ class MembershipsController < ApplicationController
 
   def get_roles
     array = []
-    Membership::ROLES.each do |role|
+    Role.all.each do |role|
       max_count = projects.map{ |p| p.memberships.with_role(role).count }.max
       max_count.times do |i|
-        array << projects.map{ |p| p.memberships.with_role(role).at(i) || Membership.new(project_id: p.id, role: role) }
+        array << projects.map{ |p| p.memberships.with_role(role).at(i) || Membership.new(project_id: p.id, role_id: role.id) }
       end
     end
     array

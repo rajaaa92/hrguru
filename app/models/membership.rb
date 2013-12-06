@@ -5,10 +5,10 @@ class Membership
 
   field :from, type: Time
   field :to, type: Time
-  field :role, type: String
 
   belongs_to :user
   belongs_to :project
+  belongs_to :role
 
   validates :user, presence: true
   validates :project, presence: true
