@@ -14,8 +14,12 @@ class User
   field :first_name
   field :last_name
   field :email
+  field :gh_nick
 
   has_many :memberships
+
+  validates :first_name, :last_name, presence: true
+  validates :email, presence: true, uniqueness: true
 
   def self.create_from_google!(params)
     user = User.where(email: params['email']).first

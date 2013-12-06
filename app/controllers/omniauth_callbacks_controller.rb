@@ -9,7 +9,9 @@ class OmniauthCallbacksController <  ApplicationController
   end
 
   def github
-
+    github_nickname = request.env['omniauth.auth'][:info][:nickname]
+    current_user.update_attributes(gh_nick: github_nickname)
+    redirect_to root_path
   end
 
   private

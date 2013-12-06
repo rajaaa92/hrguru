@@ -54,4 +54,33 @@ describe OmniauthCallbacksController do
       end
     end
   end
+
+  describe '#github' do
+    let(:callback) { get :github }
+    let(:user) { create(:user) }
+
+    before do
+      OmniAuth.config.add_mock(:github, { info: { nickname: 'xyz' }})
+      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
+    end
+
+    context 'user has signed up' do
+      before { sign_in user }
+
+      it 'updates github nickname' do
+        expect { callback }.to change { user.reload.gh_nick }.from(nil).to('xyz')
+      end
+
+      it 'redirects to root path' do
+        callback
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'user has not signed up' do
+      it 'not updates github nickname' do
+        expect { callback }.to_not change { user.gh_nick }
+      end
+    end
+  end
 end
