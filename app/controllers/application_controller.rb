@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end
+
+  def current_user
+    @decorated_cu ||= super.decorate if super.present?
+  end
 end
