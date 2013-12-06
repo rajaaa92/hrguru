@@ -1,1 +1,4 @@
-%h1= user.name
+%h1
+  = image_tag user.gravatar_url, class: "img-rounded", alt: user.name
+  = user.name
+= mail_to user.email, "send email"
