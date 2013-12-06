@@ -25,7 +25,7 @@ describe OmniauthCallbacksController do
 
       it 'signs in user' do
         callback
-        expect(controller.current_user).to eql User.last
+        expect(controller.current_user).to eq User.last
       end
 
       it 'redirects to root path' do
