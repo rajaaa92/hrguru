@@ -17,4 +17,5 @@ Devise.setup do |config|
   require 'omniauth-google-oauth2'
 
   config.omniauth :google_oauth2, AppConfig.google_client_id, AppConfig.google_secret, { access_type: "offline", approval_prompt: "" }
+  config.omniauth :github, AppConfig.github_client_id, AppConfig.github_secret, { scope: '' }
 end
