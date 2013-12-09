@@ -1,8 +1,2 @@
-Role.find_or_create_by(name: "senior")
-Role.find_or_create_by(name: "developer")
-Role.find_or_create_by(name: "junior")
-Role.find_or_create_by(name: "praktykant")
-Role.find_or_create_by(name: "pm")
-Role.find_or_create_by(name: "junior pm")
-Role.find_or_create_by(name: "qa")
-Role.find_or_create_by(name: "junior qa")
+roles = ["senior", "developer", "junior", "praktykant", "pm", "junior pm", "qa", "junior qa"]
+roles.each { |name| Role.find_or_create_by(name: name) }
