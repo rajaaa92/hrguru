@@ -3,12 +3,12 @@
     %thead
       %th Projects
     %tbody
-    - projects.each do |project|
-      %tr
-        %td
-          = link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs"
-          = link_to 'Edit', edit_project_path(project), class: "btn btn-default btn-xs"
-          = link_to project.name, project
+      - projects.each do |project|
+        %tr
+          %td
+            = link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs"
+            = link_to 'Edit', edit_project_path(project), class: "btn btn-default btn-xs"
+            = link_to project.name, project
 -else
   %h2 No projects
 

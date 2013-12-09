@@ -1,18 +1,21 @@
 class MembershipsController < ApplicationController
-  expose(:projects) { Project.all.includes(:memberships) }
-  expose(:roles) { get_roles }
+  expose(:membership, attributes: :membership_params)
+  expose(:memberships)
+  expose(:projects)
+  expose(:roles)
+  expose(:users)
 
+  def create
+    if membership.save
+      redirect_to memberships_path, notice: "Membership created!"
+    else
+      render :new
+    end
+  end
 
   protected
 
-  def get_roles
-    array = []
-    Role.all.each do |role|
-      max_count = projects.map{ |p| p.memberships.with_role(role).count }.max
-      max_count.times do |i|
-        array << projects.map{ |p| p.memberships.with_role(role).at(i) || Membership.new(project_id: p.id, role_id: role.id) }
-      end
-    end
-    array
+  def membership_params
+    params.require(:membership).permit(:from, :to, :project_id, :user_id, :role_id)
   end
 end

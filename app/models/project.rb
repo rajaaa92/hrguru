@@ -4,7 +4,7 @@ class Project
 
   field :name
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
 
   validates :name, presence: true
 end

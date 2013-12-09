@@ -1,0 +1,16 @@
+%h1 New membership
+.col-xs-5
+  = simple_form_for membership do |f|
+    %h4 Work on project
+    .row
+      .col-xs-6
+        = f.input :from, wrapper: :prepend, label_html: { class: 'input-group-addon' }
+      .col-xs-6
+        = f.input :to, wrapper: :prepend, label_html: { class: 'input-group-addon' }
+
+    = f.association :project, collection: projects.decorate
+    = f.association :user, collection: users.decorate
+    = f.association :role, collection: roles.decorate
+
+    .actions
+      = f.button :submit, class: "btn btn-success"
