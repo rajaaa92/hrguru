@@ -16,6 +16,8 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'draper', '~> 1.3'
+gem 'rabl'
+gem 'oj'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
