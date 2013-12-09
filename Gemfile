@@ -28,7 +28,9 @@ gem 'therubyracer'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'js_stack'
+gem 'gon'
 gem 'simple_form'
+gem 'selectize-rails'
 
 group :development do
   gem 'better_errors'

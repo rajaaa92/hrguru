@@ -129,6 +129,9 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     google-analytics-rails (0.0.4)
     haml (4.0.4)
       tilt
@@ -269,6 +272,7 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    selectize-rails (0.8.5)
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -324,6 +328,7 @@ DEPENDENCIES
   draper (~> 1.3)
   factory_girl_rails
   faker
+  gon
   google-analytics-rails
   haml-rails
   jquery-rails
@@ -332,16 +337,19 @@ DEPENDENCIES
   mongoid-rspec
   netguru!
   newrelic_rpm
+  oj
   omniauth
   omniauth-github
   omniauth-google-oauth2
   pry
   pry-debugger
   quiet_assets
+  rabl
   rails (= 4.0.2)
   rollbar
   rspec-rails
   sass-rails (~> 4.0.0)
+  selectize-rails
   simple_form
   spork-rails
   therubyracer
