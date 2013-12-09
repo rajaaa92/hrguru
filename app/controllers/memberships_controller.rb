@@ -13,6 +13,14 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def update
+    if membership.save
+      redirect_to memberships_path, alert: "Membership updated!"
+    else
+      render :edit
+    end
+  end
+
   def destroy
     redirect_to memberships_path, notice: "Membership deleted!" if membership.destroy
   end

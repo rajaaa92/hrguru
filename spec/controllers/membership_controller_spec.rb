@@ -74,4 +74,31 @@ describe MembershipsController do
       expect { delete :destroy, id: membership }.to change(Membership, :count).by(-1)
     end
   end
+
+  describe '#update' do
+    let!(:membership) { create(:membership, user: create(:user, first_name: "Marian")) }
+
+    it "exposes membership" do
+      put :update, id: membership, membership: membership.attributes
+      expect(controller.membership).to eq membership
+    end
+
+    context "valid attributes" do
+      it "changes membership's attributes" do
+        attributes = attributes_for(:membership)
+        attributes["user_id"] = create(:user, first_name: "Hela").id
+        put :update, id: membership, membership: attributes
+        membership.reload
+        expect(membership.user.first_name).to eq "Hela"
+      end
+    end
+
+    context "invalid attributes" do
+      it "does not change membership's attributes" do
+        put :update, id: membership, membership: attributes_for(:membership, project_id: nil)
+        membership.reload
+        expect(membership.project).to be
+      end
+    end
+  end
 end

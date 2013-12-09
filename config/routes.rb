@@ -12,7 +12,7 @@ Hrguru::Application.routes.draw do
 
   resources :users, only: [:index, :show]
   resources :projects
-  resources :memberships, only: [:index, :new, :create, :destroy]
+  resources :memberships, except: [:show]
 
   root 'welcome#index'
 end

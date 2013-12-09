@@ -16,6 +16,7 @@
           %td= membership.from.to_date
           %td= membership.to ? membership.to.to_date : content_tag("span", "till now", class: "label label-success")
           %td
+            = link_to "Edit", edit_membership_path(membership), class: "btn btn-xs btn-default"
             = link_to "Destroy", membership, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"
 - else
   %h2 No memberships
