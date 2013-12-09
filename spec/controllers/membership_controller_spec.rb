@@ -66,4 +66,12 @@ describe MembershipsController do
       end
     end
   end
+
+  describe "#destroy" do
+    let!(:membership) { create(:membership) }
+
+    it "deletes the membership" do
+      expect { delete :destroy, id: membership }.to change(Membership, :count).by(-1)
+    end
+  end
 end

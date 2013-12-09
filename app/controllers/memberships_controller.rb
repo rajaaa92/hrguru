@@ -13,6 +13,10 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def destroy
+    redirect_to memberships_path, notice: "Membership deleted!" if membership.destroy
+  end
+
   protected
 
   def membership_params

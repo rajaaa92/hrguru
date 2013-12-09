@@ -6,6 +6,7 @@
       %th Role
       %th From
       %th To
+      %th
     %tbody
       - memberships.each do |membership|
         %tr
@@ -14,6 +15,8 @@
           %td= membership.role
           %td= membership.from.to_date
           %td= membership.to ? membership.to.to_date : content_tag("span", "till now", class: "label label-success")
+          %td
+            = link_to "Destroy", membership, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"
 - else
   %h2 No memberships
 
