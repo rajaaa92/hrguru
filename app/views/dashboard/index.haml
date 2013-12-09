@@ -1,6 +1,39 @@
-%h1 Cool, you are logged in.
-
 - unless current_user.github_connected?
   Now please
   = link_to "connect", user_omniauth_authorize_path(:github)
   your GitHub account.
+
+
+%table#projects-users.table.table-bordered
+  %thead
+    %tr
+      %th
+      - projects.each do |project|
+        %th= project.name
+  %tbody
+    - roles.each do |role|
+      %tr{ class: role.name }
+        %td= role.name
+        - projects.each do |project|
+          %td.entries
+            %input{ type: 'text' }
+
+:coffee
+  $('#projects-users input').each ->
+    $(@).selectize
+      plugins: ['remove_button']
+      valueField: 'id'
+      labelField: 'name'
+      searchField: 'name'
+      options: gon.users
+      render:
+        item: (item, escape) ->
+          $('<div>', class: 'entry', text: item.name)[0].outerHTML
+        option: (item, escape) ->
+            '<div class="person">' +
+              '<div class="pull-left">' +
+                '<img class="img-circle" src="' + item.gravatar + '" />' +
+              '</div>' +
+              '<div>' + item.name + '</div>' +
+              '<div>' + item.email + '</div>' +
+            '</div>'
