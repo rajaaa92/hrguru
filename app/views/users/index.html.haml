@@ -1,7 +1,25 @@
-%table.table
+%table.table.table-striped.table-hover
   %thead
-    %th Users
+    %th
+    %th User
+    %th Role
+    %th Internships
+    %th Recruited
+    %th Employment
+    %th Project
+    %th Email
+    %th Phone
+    %th Github
   %tbody
   - users.each do |user|
     %tr
+      %td= image_tag user.gravatar_url(40)
       %td= link_to user.name, user
+      %td= user.role || "-"
+      %td date
+      %td date
+      %td date
+      %td= user.project ? link_to(user.project.name, user.project) : "-"
+      %td= mail_to user.email, user.email
+      %td number
+      %td= user.github_connected? ? link_to(user.gh_nick, "http://github.com/#{user.gh_nick}") : "-"

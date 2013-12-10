@@ -17,6 +17,7 @@ class User
   field :gh_nick
 
   has_many :memberships
+  belongs_to :role
 
   validates :first_name, :last_name, presence: true
   validates :email, presence: true, uniqueness: true
@@ -34,5 +35,20 @@ class User
 
   def github_connected?
     gh_nick.present?
+  end
+
+  def project
+    memberships = Membership.with_user(id).to_a
+    unless memberships.empty?
+      current = { mem: nil, time: Time.now }
+      memberships.each do |mem|
+        if mem.to
+          return mem.project if (mem.from..mem.to).cover? current[:time]
+        else
+          return mem.project if mem.from <= current[:time]
+        end
+      end
+    end
+    nil
   end
 end
