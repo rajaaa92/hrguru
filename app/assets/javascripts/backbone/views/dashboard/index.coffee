@@ -4,6 +4,7 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
   completionItem: JST['dashboard/completion']
 
   initialize: ->
+    @users = new Hrguru.Collections.Users(gon.users)
     @showAutocomplation()
 
   showAutocomplation: ->
@@ -12,7 +13,7 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
       valueField: 'id'
       labelField: 'name'
       searchField: 'name'
-      options: gon.users
+      options: @users.toJSON()
       render:
         item: (item, escape) ->
           $('<div>', class: 'entry', text: item.name)[0].outerHTML
