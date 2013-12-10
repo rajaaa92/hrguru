@@ -8,6 +8,10 @@ module ApplicationHelper
     "#{controller_path.gsub('/', ' ')} #{action_name}"
   end
 
+  def backbone_view
+    [controller_name, action_name].map(&:camelcase).join
+  end
+
   def bootstrap_flash
     flash_msg = ""
     flash.each do |name, msg|
