@@ -1,5 +1,5 @@
 describe Membership do
-  subject { build(:membership) }
+  subject { build(:membership, from: Time.now) }
 
   it { should belong_to :user }
   it { should belong_to :project }
@@ -14,44 +14,78 @@ describe Membership do
 
   describe '#validate_from_to' do
     it "should add an error if 'to' is before 'from'" do
-      membership = build(:membership, from: Time.now, to: (Time.now - 2.days))
-      membership.send :validate_from_to
-      expect(membership.errors[:to]).to include("can't be before from date")
+      subject.to = subject.from - 2.days
+      subject.send :validate_from_to
+      expect(subject.errors[:to]).to include("can't be before from date")
     end
   end
 
   describe '#validate_user_available' do
     let(:user) { create(:user) }
-    let(:membership) { build(:membership, user: user) }
+    let!(:membership_without_end) { create(:membership, user: user, from: Time.new(2014, 1, 1, 11, 10), to: nil) }
+    let!(:membership) { create(:membership, from: Time.new(2013, 8, 1, 11, 10), user: user) }
 
-    before do
-      create(:membership, from: Time.new(2013, 8, 1, 11, 10), to: Time.new(2013, 9, 1, 12, 2), user: user)
+    before { subject.user = user }
+
+    after do
+      subject.send :validate_user_available
+      expect(subject.errors[:user]).to include("user not available")
     end
 
-    context "should add an error if given range" do
-      after do
-        membership.send :validate_user_available
-        expect(membership.errors[:user]).to include("user not available")
-      end
-
+    context "when given range" do
       it "is inside existing one" do
-        membership.from = Time.new(2013, 8, 2, 11, 10)
-        membership.to = Time.new(2013, 8, 10, 11, 10)
+        subject.from = membership.from + 2.days
+        subject.to = membership.to
       end
 
-      it "ends in existing one" do
-        membership.from = Time.new(2012, 1, 1, 11, 10)
-        membership.to = Time.new(2013, 8, 10, 11, 10)
+      it "ends in existing one and starts earlier" do
+        subject.from = membership.from - 2.days
+        subject.to = membership.to
       end
 
-      it "starts in existing one" do
-        membership.from = Time.new(2012, 8, 3, 11, 10)
-        membership.to = Time.new(2016, 10, 3, 11, 10)
+      it "starts in existing one and ends later" do
+        subject.from = membership.from + 2.days
+        subject.to = membership.to + 2.days
       end
 
-      it "is around existing one" do
-        membership.from = Time.new(2001, 8, 3, 11, 10)
-        membership.to = Time.new(2016, 10, 3, 11, 10)
+      it "starts earlier and ends later than existing one" do
+        subject.from = membership.from - 2.days
+        subject.to = membership.to + 2.days
+      end
+
+      it "ends in membership without end date" do
+        subject.from = membership_without_end.from - 2.days
+        subject.to = membership_without_end.from
+      end
+
+      it "starts in membership without end date" do
+        subject.from = membership_without_end.from
+        subject.to = subject.from + 1.month
+      end
+
+      it "starts earlier and ends later than one without end date" do
+        subject.from = membership_without_end.from - 2.days
+        subject.to = membership_without_end.from + 2.days
+      end
+    end
+
+    context "when given from" do
+      before { subject.to = nil }
+
+      it "starts later than one without end date" do
+        subject.from = membership_without_end.from + 2.days
+      end
+
+      it "starts earlier than one without end date" do
+        subject.from = membership_without_end.from - 2.days
+      end
+
+      it "starts in range of existing one" do
+        subject.from = membership.from
+      end
+
+      it "starts earlier than existing one" do
+        subject.from = membership.from - 2.days
       end
     end
   end

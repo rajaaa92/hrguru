@@ -76,7 +76,7 @@ describe MembershipsController do
   end
 
   describe '#update' do
-    let!(:membership) { create(:membership, user: create(:user, first_name: "Marian")) }
+    let!(:membership) { create(:membership, from: Time.new(2002, 10, 1, 15, 2), to: Time.new(2002, 10, 28, 15, 2)) }
 
     it "exposes membership" do
       put :update, id: membership, membership: membership.attributes
@@ -84,12 +84,11 @@ describe MembershipsController do
     end
 
     context "valid attributes" do
-      it "changes membership's attributes" do
-        attributes = attributes_for(:membership)
-        attributes["user_id"] = create(:user, first_name: "Hela").id
+      it "changes membership's range" do
+        attributes = { to: Time.new(2002, 10, 26, 15, 2) }
         put :update, id: membership, membership: attributes
         membership.reload
-        expect(membership.user.first_name).to eq "Hela"
+        expect(membership.to.day).to eq 26
       end
     end
 

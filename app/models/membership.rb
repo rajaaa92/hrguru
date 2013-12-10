@@ -20,14 +20,24 @@ class Membership
   scope :with_role, ->(role) { where(role: role) }
   scope :with_user, ->(user) { where(user: user) }
 
-  def self.available_user?(user, from, to = nil)
+  def self.available_user?(id, user, from, to = nil)
+    user_memberships = with_user(user).not_in(:_id => [id])
     if to
-      return false if with_user(user).where(:from.gte => from).and(:to.lte => to).exists?
-      return false if with_user(user).where(:to.gte => from).and(:to.lte => to).exists?
-      return false if with_user(user).where(:from.gte => from).and(:from.lte => to).exists?
-      return false if with_user(user).where(:from.lte => from).and(:to.gte => to).exists?
+      user_memberships.each do |membership|
+        if membership.to
+          return false if (from <= membership.to) && (membership.from <= to)
+        else
+          return false if membership.from <= to
+        end
+      end
     else
-      return false if with_user(user).where(:to.gte => from).exists?
+      user_memberships.each do |membership|
+        if membership.to
+          return false if from <= membership.to
+        else
+          return false
+        end
+      end
     end
     true
   end
@@ -35,13 +45,13 @@ class Membership
   private
 
   def validate_from_to
-    if to.present? and from > to
+    if to.present? && from > to
       errors.add(:to, "can't be before from date")
     end
   end
 
   def validate_user_available
-    unless self.class.available_user?(user, from, to)
+    unless self.class.available_user?(id, user, from, to)
       errors.add(:user, "user not available")
     end
   end
