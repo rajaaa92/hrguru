@@ -3,4 +3,9 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require selectize
+//= require js_stack/jsroutes
+//= require js_stack/backbone
+//= require js_stack/marionette
+//= require js_stack/hamlcoffee
+//= require backbone/hrguru
 //= require_tree .
