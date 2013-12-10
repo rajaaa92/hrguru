@@ -17,23 +17,3 @@
         - projects.each do |project|
           %td.entries
             %input{ type: 'text' }
-
-:coffee
-  $('#projects-users input').each ->
-    $(@).selectize
-      plugins: ['remove_button']
-      valueField: 'id'
-      labelField: 'name'
-      searchField: 'name'
-      options: gon.users
-      render:
-        item: (item, escape) ->
-          $('<div>', class: 'entry', text: item.name)[0].outerHTML
-        option: (item, escape) ->
-            '<div class="person">' +
-              '<div class="pull-left">' +
-                '<img class="img-circle" src="' + item.gravatar + '" />' +
-              '</div>' +
-              '<div>' + item.name + '</div>' +
-              '<div>' + item.email + '</div>' +
-            '</div>'

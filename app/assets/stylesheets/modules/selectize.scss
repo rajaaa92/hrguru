@@ -6,20 +6,25 @@
   border-bottom: 1px solid #DDD;
   z-index: 2;
   background: white;
-  @include box-shadow(none);
   border-radius: 0;
 }
 
 .selectize-input {
-    @include box-shadow(none);
-    border: 0;
-    min-height: 34px;
-    overflow: visible;
+  @include box-shadow(none);
+  border: 0;
+  min-height: 34px;
+  overflow: visible;
 
-    &.focus {
-        overflow: visible;
-        @include box-shadow(none);
-    }
+  &.focus {
+    overflow: visible;
+    @include box-shadow(none);
+  }
+}
+
+.selectize-dropdown-content {
+  .person {
+    .name { margin: 6px 40px; }
+  }
 }
 
 .selectize-control {
