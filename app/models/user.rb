@@ -38,17 +38,6 @@ class User
   end
 
   def project
-    memberships = Membership.with_user(id).to_a
-    unless memberships.empty?
-      current = { mem: nil, time: Time.now }
-      memberships.each do |mem|
-        if mem.to
-          return mem.project if (mem.from..mem.to).cover? current[:time]
-        else
-          return mem.project if mem.from <= current[:time]
-        end
-      end
-    end
-    nil
+    memberships.or({ :from.lte => Date.today, to: nil }, { :from.lte => Date.today, :to.gte => Date.today }).first.try(:project)
   end
 end

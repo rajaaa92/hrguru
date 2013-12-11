@@ -12,42 +12,33 @@ describe User do
     let!(:project) { create(:project, name: "google") }
 
     before do
-      Time.stub(:now).and_return(Time.new(2013, 12, 1, 11, 10))
+      Date.stub(:today).and_return(Date.new(2013, 12, 1))
     end
 
-    def create_membership(from, to, with_project = true)
-      if with_project
-        create(:membership, user: user, from: from, to: to, project: project)
-      else
-        create(:membership, user: user, from: from, to: to)
-      end
-    end
-
-    def from(year, month, day)
+    def time(year, month, day)
       Time.new(year, month, day, 11, 10)
     end
-    alias_method :to, :from
 
-    it "expect 'google' project" do
-      create_membership from(2013, 11, 1), to(2014, 1, 1)
-      expect(user.project).to be project
+    it "expect 'hrguru' project" do
+      create(:membership_with_hrguru, from: time(2013, 11, 1), to: time(2014, 1, 1), user: user)
+      expect(user.project.name).to eq 'hrguru'
     end
 
     it "expect no project" do
-      create_membership from(2013, 1, 1), to(2013, 1, 30)
+      create(:membership_with_hrguru, from: time(2013, 1, 1), to: time(2013, 1, 30), user: user)
       expect(user.project).to be_nil
     end
 
     it "expect to got project without end date" do
-      create_membership from(2011, 1, 1), nil
-      expect(user.project).to be project
+      create(:membership_with_hrguru_no_to, from: time(2011, 1, 1), user: user)
+      expect(user.project.name).to eq 'hrguru'
     end
 
     it "expect to got current project" do
-      create_membership from(2013, 11, 1), to(2013, 12, 1)
-      create(:membership, user: user, from: from(2016, 1, 1))
-      create(:membership, user: user, from: from(2017, 1, 1), to: nil)
-      expect(user.project).to be project
+      create(:membership_with_hrguru, from: time(2013, 11, 1), to: time(2014, 12, 1), user: user)
+      create(:membership, user: user, from: time(2016, 1, 1))
+      create(:membership_without_to, user: user, from: time(2017, 1, 1))
+      expect(user.project.name).to eq 'hrguru'
     end
   end
 end
