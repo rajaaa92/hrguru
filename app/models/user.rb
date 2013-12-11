@@ -42,6 +42,7 @@ class User
   end
 
   def project
-    memberships.or({ :from.lte => Date.today, to: nil }, { :from.lte => Date.today, :to.gte => Date.today }).first.try(:project)
+    today = Date.today
+    memberships.or({ :from.lte => today, to: nil }, { :from.lte => today, :to.gte => today }).first.try(:project)
   end
 end
