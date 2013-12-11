@@ -15,6 +15,10 @@ class User
   field :last_name
   field :email
   field :gh_nick
+  field :employment
+  field :internship
+  field :phone
+  field :recruited, type: Date
 
   has_many :memberships
   belongs_to :role
