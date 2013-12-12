@@ -7,9 +7,10 @@
       .col-xs-6
         = f.input :to, as: :date_picker, wrapper: :prepend, label_html: { class: 'input-group-addon' }
 
-    = f.association :project, collection: projects.decorate, include_blank: false
-    = f.association :user, collection: users.decorate, include_blank: false
-    = f.association :role, collection: roles.decorate, include_blank: false
+    - f.with_options include_blank: false do |g|
+      = g.association :project, collection: projects
+      = g.association :user, collection: users
+      = g.association :role, collection: roles
 
     .actions
       = f.button :submit, class: "btn-success"

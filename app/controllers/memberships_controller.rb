@@ -1,9 +1,9 @@
 class MembershipsController < ApplicationController
   expose(:membership, attributes: :membership_params)
   expose(:memberships)
-  expose(:projects)
-  expose(:roles)
-  expose(:users)
+  expose(:projects) { Project.decorate }
+  expose(:roles) { Role.decorate }
+  expose(:users) { User.decorate }
 
   def create
     if membership.save
