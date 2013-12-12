@@ -1,4 +1,6 @@
 class MembershipsController < ApplicationController
+  respond_to :json, only: [:create, :update]
+
   expose(:membership, attributes: :membership_params)
   expose(:memberships)
   expose(:projects) { Project.decorate }
@@ -6,18 +8,31 @@ class MembershipsController < ApplicationController
   expose(:users) { User.decorate }
 
   def create
+    membership.from ||= Date.today
     if membership.save
-      redirect_to memberships_path, notice: "Membership created!"
+      respond_to do |format|
+        format.html { redirect_to memberships_path, notice: "Membership created!" }
+        format.json { render json: membership }
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: { errors: membership.errors } }
+      end
     end
   end
 
   def update
     if membership.save
-      redirect_to memberships_path, alert: "Membership updated!"
+      respond_to do |format|
+        format.html { redirect_to memberships_path, alert: "Membership updated!" }
+        format.json { render json: membership }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: { errors: membership.errors } }
+      end
     end
   end
 
