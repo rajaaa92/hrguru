@@ -1,5 +1,14 @@
 body.dashboard {
   &.index {
-    td.entries { padding: 0; }
+    #main-container{ min-width: 100%; }
+    #projects-users { width: auto; max-width: auto; }
+    td.entries {
+      padding: 0;
+      width: 200px;
+    }
+    .role {
+      width: 80px;
+      text-align: right;
+    }
   }
 }

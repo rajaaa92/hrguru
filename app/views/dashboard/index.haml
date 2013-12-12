@@ -3,17 +3,16 @@
   = link_to "connect", user_omniauth_authorize_path(:github)
   your GitHub account.
 
-
 %table#projects-users.table.table-bordered
   %thead
     %tr
-      %th
+      %th.role
       - projects.each do |project|
         %th= project.name
   %tbody
     - roles.each do |role|
       %tr{ class: role.name }
-        %td= role.name
+        %td.role= role.name
         - projects.each do |project|
-          %td.entries
+          %td.entries{ data: { role: role.id, project: project.id } }
             %input{ type: 'text' }
