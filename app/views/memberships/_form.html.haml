@@ -3,9 +3,9 @@
     %h4 Work on project
     .row
       .col-xs-6
-        = f.input :from, wrapper: :prepend, input_html: { value: f.object.from.try(:to_s, :date) }, label_html: { class: 'input-group-addon' }
+        = f.input :from, as: :date_picker, wrapper: :prepend, label_html: { class: 'input-group-addon' }
       .col-xs-6
-        = f.input :to, wrapper: :prepend, input_html: { value: f.object.to.try(:to_s, :date) }, label_html: { class: 'input-group-addon' }
+        = f.input :to, as: :date_picker, wrapper: :prepend, label_html: { class: 'input-group-addon' }
 
     = f.association :project, collection: projects.decorate, include_blank: false
     = f.association :user, collection: users.decorate, include_blank: false
