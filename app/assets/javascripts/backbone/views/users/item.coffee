@@ -3,12 +3,12 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
   template: JST['users/row']
 
   bindings:
-    '#name': 'name'
-    '#internship': 'internship'
-    '#recruited': 'recruited'
-    '#employment': 'employment'
-    '#phone': 'phone'
-    '#roles':
+    '.name': 'name'
+    '.internship': 'internship'
+    '.recruited': 'recruited'
+    '.employment': 'employment'
+    '.phone': 'phone'
+    '.roles':
       observe: 'role'
       selectOptions:
         collection: -> gon.roles

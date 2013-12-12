@@ -2,18 +2,18 @@
   %a{ href: Routes.user_path(@id) }
     != @gravatar
 %td
-  %input.form-control#name
+  %input.form-control.name
 %td
-  %select.form-control#roles
+  %select.form-control.roles
 %td
-  %input.form-control#internship
+  %input.form-control.internship
 %td
-  %input.form-control#recruited
+  %input.form-control.recruited
 %td
-  %input.form-control#employment
+  %input.form-control.employment
 %td
 %td
   %a{ href: "mailto: #{@email}" }= @email
 %td
-  %input.form-control#phone
+  %input.form-control.phone
 %td!= @github
