@@ -18,6 +18,7 @@ class Membership
 
   scope :with_role, ->(role) { where(role: role) }
   scope :with_user, ->(user) { where(user: user) }
+  scope :active, -> { any_of({ :from.lt => Time.now, to: nil }, { :from.lt => Time.now, :to.gt => Time.now })}
 
   private
 
