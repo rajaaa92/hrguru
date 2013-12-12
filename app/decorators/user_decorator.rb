@@ -25,6 +25,6 @@ class UserDecorator < Draper::Decorator
   end
 
   def github_link
-    github_connected? ? h.link_to(gh_nick, "http://github.com/#{gh_nick}") : "-"
+    h.link_to(gh_nick, "http://github.com/#{gh_nick}") if github_connected?
   end
 end

@@ -1,0 +1,19 @@
+%td
+  %a{ href: Routes.user_path(@id) }
+    != @gravatar
+%td
+  %input.form-control#name
+%td
+  %select.form-control#roles
+%td
+  %input.form-control#internship
+%td
+  %input.form-control#recruited
+%td
+  %input.form-control#employment
+%td
+%td
+  %a{ href: "mailto: #{@email}" }= @email
+%td
+  %input.form-control#phone
+%td!= @github

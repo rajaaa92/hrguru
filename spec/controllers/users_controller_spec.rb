@@ -39,10 +39,6 @@ describe UsersController do
       expect(response.status).to eq(200)
     end
 
-    it "exposes user" do
-      expect(controller.user).to be subject
-    end
-
     it "should display user name on view" do
       expect(response.body).to match /Dean Winchester/
     end
