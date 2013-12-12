@@ -8,5 +8,6 @@
 //= require js_stack/marionette
 //= require js_stack/hamlcoffee
 //= require js_stack/backbone.stickit
+//= require js_stack/moment
 //= require backbone/hrguru
 //= require_tree .

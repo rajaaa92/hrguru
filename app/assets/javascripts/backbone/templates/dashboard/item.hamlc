@@ -1,0 +1,3 @@
+.entry
+  %span.name= @name
+  %span.remove &times;
