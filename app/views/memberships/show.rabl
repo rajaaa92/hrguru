@@ -1,2 +1,2 @@
-collection memberships
+object membership
 extends 'memberships/base'

@@ -12,7 +12,7 @@ class MembershipsController < ApplicationController
     if membership.save
       respond_to do |format|
         format.html { redirect_to memberships_path, notice: "Membership created!" }
-        format.json { render json: membership }
+        format.json { render :show }
       end
     else
       respond_to do |format|
@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
     if membership.save
       respond_to do |format|
         format.html { redirect_to memberships_path, alert: "Membership updated!" }
-        format.json { render json: membership }
+        format.json { render :show }
       end
     else
       respond_to do |format|
