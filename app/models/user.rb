@@ -41,8 +41,8 @@ class User
     gh_nick.present?
   end
 
-  def project
+  def current_projects
     today = Date.today
-    memberships.or({ :from.lte => today, to: nil }, { :from.lte => today, :to.gte => today }).first.try(:project)
+    memberships.includes(:project).or({ :from.lte => today, to: nil }, { :from.lte => today, :to.gte => today }).map(&:project)
   end
 end

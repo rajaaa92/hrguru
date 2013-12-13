@@ -7,38 +7,33 @@ describe User do
   it { should belong_to :role }
   it { should be_valid }
 
-  describe "#project" do
+  describe "#current_projects" do
     let(:user) { create(:user) }
     let!(:project) { create(:project, name: "google") }
 
-    before do
-      Date.stub(:today).and_return(Date.new(2013, 12, 1))
-    end
+    before { Timecop.freeze(Time.local(2013, 12, 1)) }
+    after { Timecop.return }
 
     def time(year, month, day)
-      Time.new(year, month, day, 11, 10)
+      Time.new(year, month, day)
     end
 
-    it "expect 'hrguru' project" do
-      create(:membership_with_hrguru, from: time(2013, 11, 1), to: time(2014, 1, 1), user: user)
-      expect(user.project.name).to eq 'hrguru'
+    it "expect projects list to include 'google' project" do
+      create(:membership, from: time(2013, 11, 1), to: time(2014, 1, 1), user: user, project: project)
+      expect(user.current_projects).to include project
+      expect(user.current_projects.count).to be 1
     end
 
-    it "expect no project" do
-      create(:membership_with_hrguru, from: time(2013, 1, 1), to: time(2013, 1, 30), user: user)
-      expect(user.project).to be_nil
+    it "expect no projects" do
+      create(:membership, from: time(2012, 1, 1), to: time(2013, 11, 30), user: user)
+      expect(user.current_projects).to be_empty
     end
 
-    it "expect to got project without end date" do
-      create(:membership_with_hrguru_no_to, from: time(2011, 1, 1), user: user)
-      expect(user.project.name).to eq 'hrguru'
-    end
-
-    it "expect to got current project" do
-      create(:membership_with_hrguru, from: time(2013, 11, 1), to: time(2014, 12, 1), user: user)
-      create(:membership, user: user, from: time(2016, 1, 1))
-      create(:membership_without_to, user: user, from: time(2017, 1, 1))
-      expect(user.project.name).to eq 'hrguru'
+    it "expect projects array to include 2 projects" do
+      create(:membership, from: time(2011, 1, 1), to: time(2012, 1, 1), user: user)
+      create(:membership, from: time(2012, 1, 1), to: time(2014, 1, 1), user: user)
+      create(:membership_without_to, from: time(2013, 1, 1), user: user)
+      expect(user.current_projects.count).to eq 2
     end
   end
 end

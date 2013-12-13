@@ -12,6 +12,8 @@
 %td
   %input.form-control.employment
 %td
+  - for project in @projects
+    %a{ href: Routes.project_path(project._id) }= project.name
 %td
   %a{ href: "mailto: #{@email}" }= @email
 %td

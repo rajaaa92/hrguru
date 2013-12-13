@@ -6,14 +6,6 @@ FactoryGirl.define do
     project
     role
 
-    factory :membership_with_hrguru do
-      association :project, factory: :project, name: "hrguru"
-
-      factory :membership_with_hrguru_no_to do
-        to nil
-      end
-    end
-
     factory :membership_without_to do
       to nil
     end
