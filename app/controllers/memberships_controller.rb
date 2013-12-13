@@ -8,7 +8,6 @@ class MembershipsController < ApplicationController
   expose(:users) { User.decorate }
 
   def create
-    membership.from ||= Date.today
     if membership.save
       respond_to do |format|
         format.html { redirect_to memberships_path, notice: "Membership created!" }
