@@ -19,8 +19,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def gravatar_image(options = {})
-    size ||= options[:size]
-    options.delete(:size)
+    size = options.delete(:size)
     h.image_tag gravatar_url(size), options
   end
 
