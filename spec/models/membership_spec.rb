@@ -19,4 +19,43 @@ describe Membership do
       expect(subject.errors[:to]).to include("can't be before from date")
     end
   end
+
+  describe '#validate_duplicate_project' do
+    let(:user) { create(:user) }
+    let(:project) { create(:project) }
+    let(:membership) { build(:membership, user: user, project: project) }
+
+    before do
+      [
+        [Time.new(2013, 1, 1), Time.new(2013, 6, 1)],
+        [Time.new(2013, 6, 2), Time.new(2013, 8, 30)],
+        [Time.new(2013, 10, 1), nil]
+      ].each { |time_range| create(:membership, user: user, project: project, from: time_range[0], to: time_range[1]) }
+    end
+
+    context "valid" do
+      [
+        [Time.new(2012, 1, 1), Time.new(2012, 6, 1)],
+        [Time.new(2013, 9, 1), Time.new(2013, 9, 30)]
+      ].each do |time_range|
+        it "start #{time_range[0]} ends #{time_range[1]}" do
+          membership.from, membership.to = time_range
+          expect(membership).to be_valid
+        end
+      end
+    end
+
+    context "invalid" do
+      [
+        [Time.new(2012, 1, 1), nil],
+        [Time.new(2013, 11, 1), nil],
+        [Time.new(2013, 1, 1), Time.new(2013, 5, 1)]
+      ].each do |time_range|
+        it "start #{time_range[0]} ends #{time_range[1]}" do
+          membership.from, membership.to = time_range
+          expect(membership).to_not be_valid
+        end
+      end
+    end
+  end
 end
