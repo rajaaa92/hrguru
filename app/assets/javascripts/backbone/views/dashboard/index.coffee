@@ -5,7 +5,9 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
   item: JST['dashboard/item']
 
   events:
+    'click .entries' : 'activateSelectize'
     'click .entry .remove' : 'finishMembership'
+    'click .entry .name' : 'showDetails'
 
   initialize: ->
     @now = moment()
@@ -63,3 +65,14 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
   membershipFinished: =>
     input = @$membership_entry.parents('.selectize-control').siblings('input.selectized')
     input[0].selectize.removeItem(@user)
+
+  showDetails: (event) ->
+    $(event.currentTarget).popover
+      content: 'test test'
+      container: 'body'
+      placement: 'top'
+
+  activateSelectize: (event) ->
+    $target = $(event.target)
+    return if !$target.is('td')
+    $target.find('input.selectized')[0].selectize.open()
