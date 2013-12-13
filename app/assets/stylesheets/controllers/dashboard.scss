@@ -1,10 +1,13 @@
 body.dashboard {
   &.index {
-    #main-container{ min-width: 100%; }
-    #projects-users { width: auto; max-width: auto; }
+    #main-container{
+      width: 100%;
+      overflow-x: scroll;
+      padding-bottom: 180px;
+    }
     td.entries {
       padding: 0;
-      width: 200px;
+      cursor: text;
     }
     .role {
       width: 80px;
