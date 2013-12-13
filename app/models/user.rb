@@ -26,6 +26,7 @@ class User
 
   validates :first_name, :last_name, presence: true
   validates :email, presence: true, uniqueness: true
+  validate :validate_internship
 
   def self.create_from_google!(params)
     user = User.where(email: params['email']).first
@@ -45,5 +46,11 @@ class User
   def current_projects
     today = Date.today
     memberships.includes(:project).or({ :from.lte => today, to: nil }, { :from.lte => today, :to.gte => today }).map(&:project)
+  end
+
+  def validate_internship
+    if intern_start && intern_end
+      errors.add(:intern_end, "internship must not end before it starts") if intern_start > intern_end
+    end
   end
 end
