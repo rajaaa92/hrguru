@@ -48,9 +48,9 @@ describe MembershipsController do
 
   describe "#create" do
     let(:params) do
-      params = build(:membership).attributes
-      params.delete("_id")
-      params
+      attrs = build(:membership).attributes.except('_id')
+      attrs.each { |key, value| attrs[key] = value.to_s }
+      attrs
     end
 
     context "with valid attributes" do
