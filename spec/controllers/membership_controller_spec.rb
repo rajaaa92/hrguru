@@ -65,6 +65,20 @@ describe MembershipsController do
         expect { post :create, membership: params }.to_not change(Membership, :count)
       end
     end
+
+    describe "json format" do
+      render_views
+
+      it "returns json" do
+        post :create, membership: params, format: :json
+        %w(project_id role_id user_id).each do |key|
+          expect(json_response[key]).to eql params[key]
+        end
+        %w(from to).each do |key|
+          expect(Time.parse(json_response[key])).to eql Time.parse(params[key])
+        end
+      end
+    end
   end
 
   describe "#destroy" do
@@ -97,6 +111,16 @@ describe MembershipsController do
         put :update, id: membership, membership: attributes_for(:membership, project_id: nil)
         membership.reload
         expect(membership.project).to be
+      end
+    end
+
+    describe "json format" do
+      render_views
+
+      it "returns json" do
+        attributes = { to: Time.new(2002, 10, 26, 15, 2) }
+        put :update, id: membership, membership: attributes, format: :json
+        expect(Time.parse(json_response['to'])).to eql attributes[:to]
       end
     end
   end

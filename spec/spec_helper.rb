@@ -12,6 +12,7 @@ Spork.prefork do
     config.include FactoryGirl::Syntax::Methods
     config.include Mongoid::Matchers, type: :model
     config.include Devise::TestHelpers, type: :controller
+    config.include Helpers::JSONResponse, type: :controller
 
     config.before(:suite) do
       DatabaseCleaner[:mongoid].strategy = :truncation
