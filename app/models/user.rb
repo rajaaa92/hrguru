@@ -16,7 +16,8 @@ class User
   field :email
   field :gh_nick
   field :employment
-  field :internship
+  field :intern_start, type: Date
+  field :intern_end, type: Date
   field :phone
   field :recruited, type: Date
 

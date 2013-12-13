@@ -4,7 +4,8 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
 
   bindings:
     '.name': 'name'
-    '.internship': 'internship'
+    '.intern_start': 'intern_start'
+    '.intern_end': 'intern_end'
     '.recruited': 'recruited'
     '.employment': 'employment'
     '.phone': 'phone'
