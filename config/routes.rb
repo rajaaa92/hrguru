@@ -18,4 +18,5 @@ Hrguru::Application.routes.draw do
   resources :memberships, except: [:show]
 
   root 'welcome#index'
+  get '/github_connect', to: 'welcome#github_connect'
 end
