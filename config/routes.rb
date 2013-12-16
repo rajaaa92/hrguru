@@ -1,10 +1,13 @@
 Hrguru::Application.routes.draw do
   devise_for :users,
-    controllers: { omniauth_callbacks: 'omniauth_callbacks' },
+    controllers: {
+      omniauth_callbacks: 'omniauth_callbacks',
+      sessions: 'sessions'
+    },
     skip: [:sessions]
   devise_scope :user do
-    get 'sign_in', to: 'welcome#index'
-    delete 'sign_out', to: 'devise/sessions#destroy'
+    get 'sign_in', to: 'welcome#index', as: :new_user_session
+    delete 'sign_out', to: 'sessions#destroy'
   end
   authenticated :user do
     root 'dashboard#index', as: 'dashboard'

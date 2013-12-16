@@ -1,5 +1,6 @@
 class OmniauthCallbacksController <  ApplicationController
   skip_before_filter :authenticate_user!, only: :google_oauth2
+  skip_before_filter :connect_github, only: :github
   before_filter :check_ng_person, only: :google_oauth2
 
   def google_oauth2
