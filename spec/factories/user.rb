@@ -4,5 +4,6 @@ FactoryGirl.define do
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
     password { Devise.friendly_token[0, 20] }
+    gh_nick { Faker::Name.first_name }
   end
 end

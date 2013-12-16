@@ -57,7 +57,7 @@ describe OmniauthCallbacksController do
 
   describe '#github' do
     let(:callback) { get :github }
-    let(:user) { create(:user) }
+    let(:user) { create(:user, gh_nick: nil) }
 
     before do
       OmniAuth.config.add_mock(:github, { info: { nickname: 'xyz' }})
