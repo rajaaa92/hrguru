@@ -36,12 +36,13 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
   addDateHandler: ->
     Backbone.Stickit.addHandler
       selector: '.date_picker'
-      events: ['changeDate']
+      events: ['hide']
       onSet: 'update'
 
   update: (val, options) ->
     attr_name = options.observe
-    unless @model.get(attr_name) == val
+    attr_value = @model.get(attr_name)
+    unless (attr_value == val) || (!attr_value && !val)
       attr = {}
       attr[attr_name] = val
       @model.save(attr, { patch: true })
