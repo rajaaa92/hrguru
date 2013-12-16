@@ -13,7 +13,7 @@ Hrguru::Application.routes.draw do
     root 'dashboard#index', as: 'dashboard'
   end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :update]
   resources :projects
   resources :memberships, except: [:show]
 
