@@ -18,10 +18,14 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
         collection: -> gon.roles
         labelPath: 'name'
         valuePath: '_id'
+        defaultOption:
+          label: "no role"
+          value: null
 
   onRender: ->
     @stickit()
-    @$el.find('.roles').val(@model.get("role")._id)
+    role = @model.get("role")
+    @$el.find('.roles').val(role._id) if role
 
   addInputHandler: ->
     Backbone.Stickit.addHandler
@@ -37,7 +41,7 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
 
   update: (val, options) ->
     attr_name = options.observe
-    unless @model.attributes[attr_name] == val
+    unless @model.get(attr_name) == val
       attr = {}
       attr[attr_name] = val
       @model.save(attr, { patch: true })
