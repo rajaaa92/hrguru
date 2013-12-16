@@ -1,8 +1,6 @@
+%td!= @gravatar
 %td
-  %a{ href: Routes.user_path(@id) }
-    != @gravatar
-%td
-  %input.form-control.name
+  %a{ href: Routes.user_path(@id) }= @name
 %td
   %select.form-control.roles
 %td
