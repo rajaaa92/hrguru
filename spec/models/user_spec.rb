@@ -20,8 +20,7 @@ describe User do
 
     it "expect projects list to include 'google' project" do
       create(:membership, from: time(2013, 11, 1), to: time(2014, 1, 1), user: user, project: project)
-      expect(user.current_projects).to include project
-      expect(user.current_projects.count).to be 1
+      expect(user.current_projects).to eq [project]
     end
 
     it "expect no projects" do

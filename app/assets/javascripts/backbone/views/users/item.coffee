@@ -42,24 +42,23 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
   update: (val, options) ->
     attr_name = options.observe
     attr_value = @model.get(attr_name)
-    unless (attr_value == val) || (!attr_value && !val)
+    unless (!attr_value && !val) || (attr_value == val)
       attrObj = {}
       attrObj[attr_name] = val
       @save(attrObj, attr_name)
 
   save: (attrObj, attr_name) ->
     $input = @$el.find(".#{attr_name}")
-    that = this
     @model.save(attrObj,
       patch: true
-      success: (model, response, options) ->
-        that.hideError($input)
-        that.showPopover($input, 'updated!')
-      error: (model, response, options) ->
+      success: (model, response, options) =>
+        @hideError($input)
+        @showPopover($input, 'updated!')
+      error: (model, response, options) =>
         errors = response.responseJSON.errors
         msg = _.first(errors[attr_name])
-        that.showError($input)
-        that.showPopover($input, msg)
+        @showError($input)
+        @showPopover($input, msg)
     )
 
   showError: ($element) ->

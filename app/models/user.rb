@@ -51,8 +51,8 @@ class User
   end
 
   def validate_internship
-    if intern_start && intern_end
-      errors.add(:intern_end, "internship must not end before it starts") if intern_start > intern_end
+    if intern_start && intern_end && (intern_start > intern_end)
+      errors.add(:intern_end, "internship must not end before it starts")
     end
   end
 end

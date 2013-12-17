@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  respond_to :json, only: [:update]
-
   expose_decorated(:user, attributes: :user_params)
   expose(:users) { User.by_name.decorate }
 
@@ -11,7 +9,7 @@ class UsersController < ApplicationController
 
   def update
     if user.save
-      respond_with(user) { |format| format.json { render :user } }
+      render :user
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
