@@ -1,8 +1,8 @@
 %td!= @gravatar
 %td
-  %a{ href: Routes.user_path(@id) }= @name
+  %a.name{ href: Routes.user_path(@id) }= @name
 %td
-  %select.form-control.roles
+  %select.form-control.roles.role_id
 %td
   %input.form-control.date_picker.intern_start
   %input.form-control.date_picker.intern_end
