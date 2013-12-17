@@ -23,7 +23,11 @@ class UserDecorator < Draper::Decorator
     h.image_tag gravatar_url(size), options
   end
 
-  def github_link
-    h.link_to(gh_nick, "http://github.com/#{gh_nick}") if github_connected?
+  def github_link(options = {})
+    if github_connected?
+      h.link_to "http://github.com/#{gh_nick}", title: gh_nick do
+        options[:icon] ? h.fa_icon("github-alt") : gh_nick
+      end
+    end
   end
 end
