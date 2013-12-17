@@ -7,7 +7,8 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
   events:
     'click .entries' : 'activateSelectize'
     'click .entry .remove' : 'finishMembership'
-    'click .entry .name' : 'showDetails'
+    'click .entry' : 'showDetails'
+    'blur .selectize-input input' : 'hideDetails'
 
   initialize: ->
     @now = moment()
@@ -52,6 +53,7 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
 
   finishMembership: (event) ->
     event.preventDefault()
+    event.stopPropagation()
 
     @$membership_entry = $(event.currentTarget)
     project = @$membership_entry.parents('td').data('project')
@@ -67,10 +69,13 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
     input[0].selectize.removeItem(@user)
 
   showDetails: (event) ->
-    $(event.currentTarget).popover
-      content: 'test test'
-      container: 'body'
-      placement: 'top'
+    $target = $(event.currentTarget)
+    @active_popover?.popover('hide')
+    if @active_popover != $target
+      @active_popover = $target.popover('show')
+
+  hideDetails: (event) ->
+    @active_popover?.popover('hide')
 
   activateSelectize: (event) ->
     $target = $(event.target)
