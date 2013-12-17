@@ -33,6 +33,7 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
     $input.val(results)
 
   showAutocomplation: ->
+    self = @
     @$('#projects-users input').selectize
       create: false
       valueField: 'id'
@@ -43,6 +44,14 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
         item: (item, escape) => @item(item)
         option: (item, escape) => @completionItem(item)
       onItemAdd: @newMembership
+      onInitialize: -> self.initializeDetails(@) if @items.length > 0
+
+  initializeDetails: (selectize) ->
+    selectize.$control.find('.entry').popover
+      content: 'test test'
+      container: 'body'
+      placement: 'top'
+      trigger: 'manual'
 
   newMembership: (value, $item) =>
     project = $item.parents('td').data('project')
