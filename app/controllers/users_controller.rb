@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :json, only: [:update]
 
   expose_decorated(:user, attributes: :user_params)
-  expose(:users) { User.all.decorate }
+  expose(:users) { User.by_name.decorate }
 
   def index
     gon.rabl as: 'users'

@@ -28,6 +28,8 @@ class User
   validates :email, presence: true, uniqueness: true
   validate :validate_internship
 
+  scope :by_name, -> { asc(:first_name, :last_name) }
+
   def self.create_from_google!(params)
     user = User.where(email: params['email']).first
     return user if user.present?
