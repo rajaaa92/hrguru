@@ -9,3 +9,5 @@ class Hrguru.Views.UsersIndex extends Backbone.View
       tagName: 'tbody'
 
     tbodyView.render()
+
+    @$('.icons a').tooltip()

@@ -1,7 +1,7 @@
 %td!= @gravatar
 %td
   %a.name{ href: Routes.user_path(@id) }= @name
-  .div
+  .icons
     %a{ href: "mailto:#{@email}", title: @email }
       %i.fa.fa-envelope-o
     != @github
