@@ -1,20 +1,25 @@
 %td!= @gravatar
 %td
   %a.name{ href: Routes.user_path(@id) }= @name
+  .div
+    %a{ href: "mailto:#{@email}", title: @email }
+      %i.fa.fa-envelope-o
+    != @github
 %td
   %select.form-control.roles.role_id
 %td
-  %input.form-control.date_picker.intern_start
-  %input.form-control.date_picker.intern_end
+  .form-inline
+    .form-group
+      %input.form-control.date_picker.intern_start
+    .form-group
+      %input.form-control.date_picker.intern_end
 %td
   %input.form-control.date_picker.recruited
 %td
   %input.form-control.employment
 %td
   - for project in @projects
-    %a{ href: Routes.project_path(project._id) }= project.name
-%td
-  %a{ href: "mailto: #{@email}" }= @email
+    .div
+      %a{ href: Routes.project_path(project._id) }= project.name
 %td
   %input.form-control.phone
-%td!= @github

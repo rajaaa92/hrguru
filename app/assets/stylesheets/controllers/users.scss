@@ -1,0 +1,22 @@
+body.users {
+  &.index {
+    table {
+      ul.projects { list-style: none; }
+
+      a {
+        text-decoration: none;
+        i {
+          color: black;
+          &:hover { color: $gray-light; }
+        }
+      }
+
+      input {
+        &.phone,
+        &.date_picker { width: 100px; }
+
+        &.employment { width: 80px; }
+      }
+    }
+  }
+}
