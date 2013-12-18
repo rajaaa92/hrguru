@@ -7,6 +7,7 @@ gem 'google-analytics-rails'
 gem 'newrelic_rpm'
 
 gem 'mongoid', github: 'mongoid/mongoid', ref: '054825f'
+gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
 gem 'astrails-safe'
 
 gem 'decent_exposure'

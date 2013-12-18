@@ -23,6 +23,14 @@ GIT
       rvm-capistrano
       whenever
 
+GIT
+  remote: git://github.com/simi/mongoid-paranoia.git
+  revision: d5f3afd26c0709e695562de6b3f363d1324b173d
+  specs:
+    mongoid-paranoia (0.1)
+      activemodel (~> 4.0.0)
+      mongoid (> 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -344,6 +352,7 @@ DEPENDENCIES
   jquery-rails
   js_stack
   mongoid!
+  mongoid-paranoia!
   mongoid-rspec
   netguru!
   newrelic_rpm
