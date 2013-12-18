@@ -46,8 +46,8 @@ class User
   end
 
   def current_projects
-    today = Date.today
-    memberships.includes(:project).or({ :from.lte => today, to: nil }, { :from.lte => today, :to.gte => today }).map(&:project)
+    now = Time.now
+    memberships.includes(:project).or({ :from.lte => now, to: nil }, { :from.lte => now, :to.gte => now }).map(&:project)
   end
 
   def validate_internship

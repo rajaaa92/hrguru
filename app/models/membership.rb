@@ -21,6 +21,11 @@ class Membership
   scope :with_user, ->(user) { where(user: user) }
   scope :active, -> { any_of({ :from.lt => Time.now, to: nil }, { :from.lt => Time.now, :to.gt => Time.now })}
 
+  alias_method :original_project, :project
+  def project
+    Project.unscoped { original_project }
+  end
+
   private
 
   def validate_from_to
