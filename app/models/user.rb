@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   devise :database_authenticatable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :github]
 

@@ -8,11 +8,9 @@ describe MembershipsController do
   describe "#index" do
     render_views
 
-    let(:user) { create(:user, first_name: "Marian") }
-
     before do
+      create(:membership, user: create(:user_deleted, first_name: "Tomek"), project: create(:project_deleted, name: "hrguru"))
       create(:membership, role: create(:role, name: "junior"))
-      create(:membership, role: create(:role, name: "senior"))
     end
 
     it "responds successfully with an HTTP 200 status code" do
@@ -29,7 +27,8 @@ describe MembershipsController do
     it "should display memberships on view" do
       get :index
       expect(response.body).to match /junior/
-      expect(response.body).to match /senior/
+      expect(response.body).to match /hrguru/
+      expect(response.body).to match /Tomek/
     end
   end
 

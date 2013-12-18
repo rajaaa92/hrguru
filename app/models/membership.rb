@@ -21,9 +21,13 @@ class Membership
   scope :with_user, ->(user) { where(user: user) }
   scope :active, -> { any_of({ :from.lt => Time.now, to: nil }, { :from.lt => Time.now, :to.gt => Time.now })}
 
-  alias_method :original_project, :project
-  def project
-    Project.unscoped { original_project }
+  %w(user project).each do |model|
+    original_model = "original_#{model}"
+    alias_method original_model, model
+
+    define_method(model) do
+      model.capitalize.constantize.unscoped { send original_model }
+    end
   end
 
   private

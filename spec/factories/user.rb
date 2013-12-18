@@ -7,5 +7,9 @@ FactoryGirl.define do
     gh_nick { Faker::Name.first_name }
     intern_start Date.new(2013, 7, 10)
     intern_end { intern_start + 3.months }
+
+    factory :user_deleted do
+      deleted_at Time.now
+    end
   end
 end
