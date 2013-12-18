@@ -1,6 +1,7 @@
 class Role
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   has_many :memberships
   has_many :users
