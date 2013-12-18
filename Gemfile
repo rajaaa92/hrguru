@@ -6,7 +6,7 @@ gem 'rollbar'
 gem 'google-analytics-rails'
 gem 'newrelic_rpm'
 
-gem 'mongoid', github: 'mongoid/mongoid', ref: '6c8b3f'
+gem 'mongoid', github: 'mongoid/mongoid', ref: '054825f'
 gem 'astrails-safe'
 
 gem 'decent_exposure'

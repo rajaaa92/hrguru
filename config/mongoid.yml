@@ -4,8 +4,6 @@ development:
       database: hrguru_dev
       hosts:
         - localhost:27017
-  options:
-    identity_map_enabled: true
 
 test:
   sessions:
@@ -13,8 +11,6 @@ test:
       database: hrguru_test
       hosts:
         - localhost:27017
-  options:
-    identity_map_enabled: true
 
 staging:
   sessions:
@@ -22,8 +18,6 @@ staging:
       database: hrguru_staging
       hosts:
         - localhost:27017
-  options:
-    identity_map_enabled: true
 
 production:
   sessions:
@@ -31,5 +25,3 @@ production:
       database: hrguru_production
       hosts:
         - localhost:27017
-  options:
-    identity_map_enabled: true

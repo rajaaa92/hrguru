@@ -41,7 +41,7 @@ describe ProjectsController do
     end
 
     it "exposes project" do
-      expect(controller.project).to be subject
+      expect(controller.project).to eq subject
     end
   end
 
