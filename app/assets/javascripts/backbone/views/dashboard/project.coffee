@@ -11,6 +11,7 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
 
   initialize: ->
     @now = moment()
+    @listenTo(Backbone, 'projects:toggleVisibility', @toggleVisibility)
 
   onRender: ->
     selectize = @$('.new-membership input').selectize
@@ -23,6 +24,14 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
       render:
         option: (item, escape) => @completionTemplate(item)
     @selectize = selectize[0].selectize
+
+  toggleVisibility: (ids) ->
+    if ids.length == 0
+      @$el.removeClass('hide')
+      return
+
+    show = @model.get('id') in ids
+    @$el.toggleClass('hide', !show)
 
   newMembership: (value, $item) =>
     from = moment(gon.currentTime).add(moment().diff(@now))
