@@ -2,16 +2,56 @@ body.dashboard {
   &.index {
     #main-container{
       width: 100%;
-      overflow-x: scroll;
       padding-bottom: 180px;
     }
-    td.entries {
-      padding: 0;
-      cursor: text;
+
+    #filters {
+      margin: 0 auto;
+      width: 805px;
+      .roles, .projects {
+        width: 400px;
+        display: inline-block;
+      }
     }
-    .role {
-      width: 80px;
-      text-align: right;
+
+    #projects-users {
+      margin-top: 10px;
+      overflow-x: scroll;
+      .project {
+        display: table-cell;
+
+        .project-name {
+          padding: 8px;
+          width: 200px;
+          font-weight: bold;
+          border-top: 1px solid #DDD;
+          border-left: 1px solid #DDD;
+          border-bottom: 2px solid #DDD;
+        }
+
+        .membership, .new-membership {
+          border: 1px solid #DDD;
+          margin: 8px;
+          padding: 8px;
+        }
+
+        .membership {
+          .remove {
+            float: right;
+            cursor: pointer;
+          }
+        }
+
+        .new-membership {
+          color: #DDD;
+        }
+      }
+
+      .project:last-child {
+        .project-name {
+          border-right: 1px solid #DDD;
+        }
+      }
     }
   }
 }

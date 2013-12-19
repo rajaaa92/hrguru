@@ -1,13 +1,9 @@
-%table#projects-users.table.table-bordered
-  %thead
-    %tr
-      %th.role
-      - projects.each do |project|
-        %th= project.name
-  %tbody
-    - roles.each do |role|
-      %tr{ class: role.name }
-        %td.role= role.name
-        - projects.each do |project|
-          %td.entries{ data: { role: role.id, project: project.id } }
-            %input{ type: 'text' }
+#filters
+  .roles
+    Filter roles
+    %input{ type: 'text', name: 'roles' }
+  .projects
+    Filter projects
+    %input{ type: 'text', name: 'projects' }
+
+#projects-users
