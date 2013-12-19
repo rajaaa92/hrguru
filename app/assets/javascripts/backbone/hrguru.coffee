@@ -6,7 +6,8 @@
 window.Hrguru =
   Models: {}
   Collections: {}
-  Views: {}
+  Views:
+    Dashboard: {}
 
   init: ->
     view_name = $('body').data('view')
