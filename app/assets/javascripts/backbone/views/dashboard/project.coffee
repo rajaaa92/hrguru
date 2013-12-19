@@ -13,7 +13,7 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
     @now = moment()
 
   onRender: ->
-    @$('.new-membership input').selectize
+    selectize = @$('.new-membership input').selectize
       create: false
       valueField: 'id'
       labelField: 'name'
@@ -22,8 +22,20 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
       onItemAdd: @newMembership
       render:
         option: (item, escape) => @completionTemplate(item)
+    @selectize = selectize[0].selectize
 
   newMembership: (value, $item) =>
     from = moment(gon.currentTime).add(moment().diff(@now))
-    attributes = { project_id: project, role_id: role, user_id: value, from: from }
-    @memberships.create(attributes, { wait: true })
+    role = @options.itemViewOptions.users.get(value).get('role_id')
+    attributes = { project_id: @model.get('id'), role_id: role, user_id: value, from: from }
+    @collection.collection.create attributes,
+      wait: true
+      success: @membershipCreated
+      error: @membershipError
+
+  membershipCreated: =>
+    @selectize.clear()
+    @selectize.close()
+
+  membershipError: =>
+    #TODO
