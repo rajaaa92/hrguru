@@ -1,0 +1,4 @@
+.project-name= @name
+.memberships
+.new-membership
+  %input{ type: 'text', placeholder: 'Click to add...' }
