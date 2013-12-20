@@ -18,10 +18,9 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
 
   fillTable: ->
     @projects.each (project) =>
-      memberships = @memberships.for_project(project.get('id'))
       view = new Hrguru.Views.Dashboard.Project
         model: project
-        collection: memberships
-        itemViewOptions:
-          users: @users
+        memberships: @memberships
+        roles: @roles
+        users: @users
       @$('#projects-users').append(view.render().$el)
