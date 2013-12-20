@@ -2,6 +2,7 @@
 #= require_tree ./templates
 #= require_tree ./views
 #= require_tree ./models
+#= require_tree ./lib
 
 window.Hrguru =
   Models: {}
