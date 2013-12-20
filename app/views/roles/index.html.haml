@@ -1,15 +1,1 @@
-- if roles.present?
-  %table.table
-    %thead
-      %th Roles
-    %tbody
-      - roles.each do |role|
-        %tr
-          %td
-            = link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs"
-            = link_to 'Edit', edit_role_path(role), class: "btn btn-default btn-xs"
-            = link_to role.name, role
--else
-  %h2 No roles
-
-= link_to 'New role', new_role_path, class: "btn btn-primary"
+%ul#roles

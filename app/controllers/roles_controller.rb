@@ -1,6 +1,12 @@
 class RolesController < ApplicationController
+  respond_to :json
+
   expose(:role, attributes: :role_params)
-  expose(:roles)
+  expose(:roles) { Role.all }
+
+  def index
+    gon.rabl as: 'roles'
+  end
 
   def create
     if role.save
