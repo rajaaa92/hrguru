@@ -12,6 +12,9 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
       events: ['change']
       onSet: 'updateName'
 
+  events:
+    'click .destroy': 'destroy'
+
   onRender: ->
     @stickit()
     @input = @$('.name')
@@ -22,6 +25,14 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
       success: => @hideError()
       error: => @showError()
     )
+
+  destroy: (event) ->
+    event.preventDefault()
+    if confirm "Are you sure?"
+      @model.destroy
+        wait: true
+        error: ->
+          alert "Cannot destroy role... Try later."
 
   showError: ->
     @input.wrap("<div class='has-error'></div>") unless @hasError()

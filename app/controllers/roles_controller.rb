@@ -25,7 +25,11 @@ class RolesController < ApplicationController
   end
 
   def destroy
-    redirect_to(roles_url, alert: "Role deleted!") if role.destroy
+    if role.destroy
+      respond_with
+    else
+      render json: {}, status: :not_found
+    end
   end
 
   private

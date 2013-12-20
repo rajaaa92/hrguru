@@ -4,3 +4,5 @@
   .input-group-btn
     %a.btn.btn-default{ href: Routes.role_path(@id) }
       %i.fa.fa-angle-double-right
+    %a.destroy.btn.btn-danger{ href: '#' }
+      %i.fa.fa-trash-o

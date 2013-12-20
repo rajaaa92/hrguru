@@ -67,7 +67,7 @@ describe RolesController do
     let!(:role) { create(:role) }
 
     it "deletes the contact" do
-      expect { delete :destroy, id: role }.to change(Role, :count).by(-1)
+      expect { delete :destroy, id: role, format: :json }.to change(Role, :count).by(-1)
     end
   end
 
