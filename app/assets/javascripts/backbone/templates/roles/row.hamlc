@@ -1,3 +1,6 @@
 .input-group
   .input-group-addon= @priority
   %input.name.form-control
+  .input-group-btn
+    %a.btn.btn-default{ href: Routes.role_path(@id) }
+      %i.fa.fa-angle-double-right
