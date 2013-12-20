@@ -16,6 +16,7 @@ body.dashboard {
 
     #projects-users {
       margin-top: 10px;
+      padding-bottom: 200px;
       overflow-x: scroll;
       .project {
         display: table-cell;
@@ -32,14 +33,22 @@ body.dashboard {
         .membership, .new-membership {
           border: 1px solid #DDD;
           margin: 8px;
-          padding: 8px;
         }
 
         .membership {
+          padding: 8px;
           .remove {
             float: right;
             cursor: pointer;
           }
+        }
+
+        .fake-membership {
+          padding: 8px;
+          border: 1px dashed #DDD;
+          margin: 8px;
+          color: #DDD;
+          font-style: italic;
         }
 
         .new-membership {
@@ -50,6 +59,25 @@ body.dashboard {
       .project:last-child {
         .project-name {
           border-right: 1px solid #DDD;
+        }
+      }
+    }
+
+    .new-membership {
+      .selectize-control { height: 36px; }
+      .selectize-input {
+        @include box-shadow(none);
+        border: 0;
+        padding: 8px;
+        input {
+          font-size: 14px;
+          line-height: 16px !important;
+        }
+      }
+      .selectize-dropdown {
+        [data-selectable] {
+          padding: 5px;
+          .name { margin: 5px 0 5px 35px; }
         }
       }
     }

@@ -7,7 +7,7 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
     @users = new Hrguru.Collections.Users(gon.users)
     @memberships = new Hrguru.Collections.Memberships(gon.memberships)
     @projects = new Hrguru.Collections.Projects(gon.projects)
-    @roles = new Hrguru.Collections.Memberships(gon.roles)
+    @roles = new Hrguru.Collections.Roles(gon.roles)
 
     @render()
 
