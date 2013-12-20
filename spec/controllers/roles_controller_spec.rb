@@ -89,7 +89,7 @@ describe RolesController do
 
     context "invalid attributes" do
       it "does not change role's attributes" do
-        put :update, id: role, role: attributes_for(:role, name: nil)
+        put :update, id: role, role: attributes_for(:role, name: nil), format: :json
         role.reload
         expect(role.name).to eq "senior"
       end

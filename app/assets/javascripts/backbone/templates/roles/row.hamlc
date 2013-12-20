@@ -1,2 +1,3 @@
-= @priority
-= @name
+.input-group
+  .input-group-addon= @priority
+  %input.name.form-control

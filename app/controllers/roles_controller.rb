@@ -18,9 +18,9 @@ class RolesController < ApplicationController
 
   def update
     if role.save
-      redirect_to role, alert: "Role updated!"
+      render :role
     else
-      render :edit
+      respond_with role
     end
   end
 
