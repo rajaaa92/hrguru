@@ -45,19 +45,6 @@ describe RolesController do
     end
   end
 
-  describe "#new" do
-    before { get :new }
-
-    it "responds successfully with an HTTP 200 status code" do
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "exposes new role" do
-      expect(controller.role.created_at).to be_nil
-    end
-  end
-
   describe "#create" do
     context "with valid attributes" do
       subject { attributes_for(:role) }
@@ -71,7 +58,7 @@ describe RolesController do
       subject { attributes_for(:role_invalid) }
 
       it "does not save" do
-        expect { post :create, role: subject }.to_not change(Role, :count)
+        expect { post :create, role: subject, format: :json }.to_not change(Role, :count)
       end
     end
   end

@@ -10,9 +10,9 @@ class RolesController < ApplicationController
 
   def create
     if role.save
-      redirect_to role, notice: "Role created!"
+      render :role, status: :created
     else
-      render :new
+      respond_with role
     end
   end
 

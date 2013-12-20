@@ -1,1 +1,7 @@
-%ul#roles
+.row
+  .input-group.col-sm-3
+    = text_field_tag 'name', nil, placeholder: 'Enter role name...', class: 'form-control'
+    %span.input-group-btn
+      #add-role.btn.btn-default create
+.row
+  %ul#roles
