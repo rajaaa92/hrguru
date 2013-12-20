@@ -196,6 +196,8 @@ GEM
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
+    mongoid_orderable (4.0.0)
+      mongoid
     moped (2.0.0.beta4)
       bson (~> 2.0)
       connection_pool (~> 1.2)
@@ -354,6 +356,7 @@ DEPENDENCIES
   mongoid!
   mongoid-paranoia!
   mongoid-rspec
+  mongoid_orderable
   netguru!
   newrelic_rpm
   oj
