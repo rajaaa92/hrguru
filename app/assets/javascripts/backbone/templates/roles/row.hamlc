@@ -1,5 +1,6 @@
 .input-group
-  .input-group-addon= @priority
+  .input-group-addon
+    %input.priority{ type: 'number', min: 1 }
   %input.name.form-control
   .input-group-btn
     %a.btn.btn-default{ href: Routes.role_path(@id) }

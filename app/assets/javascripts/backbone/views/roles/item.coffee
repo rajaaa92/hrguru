@@ -6,21 +6,30 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
   tagName: 'li'
   template: JST['roles/row']
 
+  initialize: -> @addInputHandler()
+
   bindings:
-    '.name':
-      observe: 'name'
-      events: ['change']
-      onSet: 'updateName'
+    '.name': 'name'
+    '.priority': 'priority'
 
   events:
     'click .destroy': 'destroy'
 
   onRender: ->
     @stickit()
-    @input = @$('.name')
 
-  updateName: (val) ->
-    @model.save('name': val,
+  addInputHandler: ->
+    Backbone.Stickit.addHandler
+      selector: ".name,.priority"
+      events: ['change']
+      onSet: 'update'
+
+  update: (val, options) ->
+    attr_name = options.observe
+    @input = @$(".#{attr_name}")
+    attr = {}
+    attr[attr_name] = val
+    @model.save(attr,
       patch: true
       success: => @hideError()
       error: => @showError()
