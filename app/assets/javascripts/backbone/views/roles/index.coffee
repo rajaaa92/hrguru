@@ -25,6 +25,7 @@ class Hrguru.Views.RolesIndex extends Backbone.View
       @collection.sort()
       @render() unless @equalIds(idsBefore)
 
+    @rolesListView.collection.sort()
     @rolesListView.render()
 
   addItem: (event) ->
