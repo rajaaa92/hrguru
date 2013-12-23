@@ -2,11 +2,6 @@ class Role
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paranoia
-  include Mongoid::Orderable
-
-  after_create :move_to_bottom
-
-  orderable column: :priority
 
   has_many :memberships
   has_many :users
