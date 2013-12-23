@@ -8,6 +8,7 @@ class Role
 
   field :name, type: String
   field :priority, type: Integer
+  field :color, type: String
 
   validates :name, presence: true
 

@@ -6,9 +6,13 @@ body.roles {
       margin: 0;
       li {
         margin-bottom: 5px;
-        input.priority {
-          width: 40px;
-          padding: 0;
+        input {
+          &.priority, &.color { padding: 0; }
+          &.priority { width: 40px; }
+          &.color {
+            width: 25px;
+            height: 20px;
+          }
         }
       }
     }
