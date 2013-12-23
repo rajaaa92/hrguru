@@ -1,9 +1,9 @@
 %td!= @gravatar
 %td
-  %a.name{ href: Routes.user_path(@id) }= @name
+  != @link_to @name, Routes.user_path(@id)
   .icons
     %a{ href: "mailto:#{@email}", title: @email }
-      %i.fa.fa-envelope-o
+      != @icon 'envelope-o'
     != @github
 %td
   %select.form-control.roles.role_id
@@ -19,7 +19,6 @@
   %input.form-control.employment
 %td
   - for project in @projects
-    .div
-      %a{ href: Routes.project_path(project._id) }= project.name
+    %div!= @link_to project.name, Routes.project_path(project._id)
 %td
   %input.form-control.phone
