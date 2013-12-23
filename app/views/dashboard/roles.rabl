@@ -1,2 +1,2 @@
 collection roles
-attributes :id, :name
+attributes :id, :name, :color

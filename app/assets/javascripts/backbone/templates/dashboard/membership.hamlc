@@ -1,2 +1,3 @@
+.role-indicator{ style: "background: #{@role.color}" }
 %span.name= @user.name
 %span.remove &times;
