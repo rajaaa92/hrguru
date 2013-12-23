@@ -31,7 +31,9 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
     attr[attr_name] = val
     @model.save(attr,
       patch: true
-      success: => @hideError()
+      success: =>
+        @trigger('collection:sort') if attr_name == 'priority'
+        @hideError()
       error: => @showError()
     )
 

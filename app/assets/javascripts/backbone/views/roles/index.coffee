@@ -12,6 +12,19 @@ class Hrguru.Views.RolesIndex extends Backbone.View
       el: @$('ul#roles')
       tagName: 'ul'
 
+    @rolesListView.getIds = ->
+      _.map @collection.models, (model) -> model.get('id')
+
+    @rolesListView.equalIds = (aIds) ->
+      @getIds().every (elem, i) -> elem is aIds[i]
+
+    @rolesListView.collection.comparator = 'priority'
+
+    @rolesListView.on 'itemview:collection:sort', ->
+      idsBefore = @getIds()
+      @collection.sort()
+      @render() unless @equalIds(idsBefore)
+
     @rolesListView.render()
 
   addItem: (event) ->
