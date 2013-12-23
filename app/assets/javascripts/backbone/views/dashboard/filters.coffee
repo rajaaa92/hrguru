@@ -17,6 +17,7 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
       valueField: 'id'
       labelField: 'name'
       searchField: 'name'
+      sortField: 'name'
       options: @projects.toJSON()
       onItemAdd: @filterProjects
       onItemRemove: @filterProjects
@@ -29,6 +30,7 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
       valueField: 'id'
       labelField: 'name'
       searchField: 'name'
+      sortField: 'priority'
       options: @roles.toJSON()
       onItemAdd: @filterRoles
       onItemRemove: @filterRoles
