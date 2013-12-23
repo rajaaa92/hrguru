@@ -8,11 +8,8 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
 
   initialize: ->
     super()
+    @user = @options.users.get(@model.get('user_id'))
     @now = moment()
-
-  serializeData: ->
-    user = @options.users.get(@model.get('user_id')).toJSON()
-    $.extend(super, { user: user })
 
   finishMembership: (event) ->
     to = moment(gon.currentTime).add(moment().diff(@now))
