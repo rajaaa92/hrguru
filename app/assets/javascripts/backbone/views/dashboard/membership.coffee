@@ -7,6 +7,7 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
     'click .remove' : 'finishMembership'
 
   initialize: ->
+    super()
     @now = moment()
 
   serializeData: ->
