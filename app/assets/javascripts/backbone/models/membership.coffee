@@ -5,15 +5,15 @@ class Hrguru.Collections.Memberships extends Backbone.Collection
   url: Routes.memberships_path()
 
   for_project: (project_id, roles) ->
+    result = Array()
     base = @where(project_id: project_id)
-    additional = Array()
 
     roles.each (role) ->
       with_role = _.select(base, (membership) -> membership.get('role_id') == role.get('id'))
       if with_role.length == 0
         user = UserFactory.basedOnRole(role)
         attributes = { role_id: role.get('id'), fake: true, virtual_user: user }
-        membership = new Hrguru.Models.Membership(attributes)
-        additional.push(membership)
+        with_role = Array(new Hrguru.Models.Membership(attributes))
+      result.push.apply(result, with_role)
 
-    new Hrguru.Collections.Memberships(base.concat(additional))
+    new Hrguru.Collections.Memberships(result)
