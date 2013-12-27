@@ -60,7 +60,6 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
 
   membershipCreated: =>
     @selectize.clear()
-    @selectize.close()
     @resetCollection()
 
   membershipError: =>
