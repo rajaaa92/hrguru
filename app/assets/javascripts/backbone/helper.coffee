@@ -1,9 +1,11 @@
 class Hrguru.Helper
 
   constructor: (options)->
-    @addViewHelpers()
     @time_now = moment()
     @server_time = gon.currentTime
+
+    @setMessengerOptions()
+    @addViewHelpers()
 
   currentTime: ->
     moment(@server_time).add(moment().diff(@time_now))
@@ -27,3 +29,10 @@ class Hrguru.Helper
       facadeCall 'link_to', ['name', 'link']
       facadeCall 'icon', ['name']
       globals
+
+  setMessengerOptions: ->
+    Messenger.options =
+      extraClasses: 'messenger-fixed messenger-on-top messenger-on-right'
+      theme: 'flat'
+      messageDefaults:
+        hideAfter: 5
