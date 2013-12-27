@@ -10,7 +10,6 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
     roles: @roles
 
   initialize: ->
-    @now = moment()
     $.extend(@, @options)
     @resetCollection()
     @on('itemview:membership:finished', @removeMembership)
@@ -50,7 +49,7 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
     @$el.toggleClass('hide', !show)
 
   newMembership: (value, $item) =>
-    from = moment(gon.currentTime).add(moment().diff(@now))
+    from = H.currentTime().format()
     role = @options.users.get(value).get('role_id')
     attributes = { project_id: @model.get('id'), role_id: role, user_id: value, from: from }
     @memberships.create attributes,

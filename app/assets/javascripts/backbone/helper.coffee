@@ -2,6 +2,11 @@ class Hrguru.Helper
 
   constructor: (options)->
     @addViewHelpers()
+    @time_now = moment()
+    @server_time = gon.currentTime
+
+  currentTime: ->
+    moment(@server_time).add(moment().diff(@time_now))
 
   addViewHelpers: ->
     HAML.globals = ->

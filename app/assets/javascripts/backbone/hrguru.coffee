@@ -16,5 +16,5 @@ window.Hrguru =
     @current_view = new Hrguru.Views[view_name]() if Hrguru.Views[view_name]?
 
 $ ->
-  new Hrguru.Helper()
+  window.H = new Hrguru.Helper()
   Hrguru.init()
