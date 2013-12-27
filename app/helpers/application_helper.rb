@@ -24,6 +24,10 @@ module ApplicationHelper
     raw flash_msg
   end
 
+  def icon(name, options = {})
+    content_tag :i, nil, id: options[:id], class: "fa fa-#{name} #{options[:class]}"
+  end
+
   private
 
   def get_alert_class(type)
