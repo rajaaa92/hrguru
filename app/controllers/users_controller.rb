@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
   expose_decorated(:user, attributes: :user_params)
   expose(:users) { User.by_name.decorate }
+  expose(:roles) { Role.all }
+  expose(:projects) { Project.all }
 
   def index
     gon.rabl as: 'users'
-    gon.roles = Role.all
+    gon.roles = roles
   end
 
   def update
@@ -13,6 +15,10 @@ class UsersController < ApplicationController
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @membership = Membership.new(user: user, role: user.role)
   end
 
   private
