@@ -22,3 +22,5 @@
     %div!= @link_to project.name, Routes.project_path(project._id)
 %td
   %input.form-control.phone
+%td
+  %select.form-control.location

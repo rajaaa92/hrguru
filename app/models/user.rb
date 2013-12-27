@@ -21,6 +21,7 @@ class User
   field :intern_end, type: Date
   field :phone
   field :recruited, type: Date
+  field :location
 
   has_many :memberships
   belongs_to :role
@@ -28,6 +29,7 @@ class User
   validates :first_name, :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validate :validate_internship
+  validates :location, inclusion: { in: %w(Warsaw Poznan Remotely) }, allow_blank: true
 
   scope :by_name, -> { asc(:first_name, :last_name) }
 

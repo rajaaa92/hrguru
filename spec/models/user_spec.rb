@@ -6,6 +6,7 @@ describe User do
   it { should have_many :memberships }
   it { should belong_to :role }
   it { should be_valid }
+  it { should validate_inclusion_of(:location).to_allow(['Warsaw', 'Poznan', 'Remotely']) }
 
   describe "#current_projects" do
     let(:user) { create(:user) }

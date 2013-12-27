@@ -21,6 +21,13 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
         defaultOption:
           label: "no role"
           value: null
+    '.location':
+      observe: 'location'
+      selectOptions:
+        collection: -> ['Poznan', 'Remotely', 'Warsaw']
+        defaultOption:
+          label: 'choose'
+          value: null
 
   onRender: ->
     @stickit()
@@ -29,7 +36,7 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
 
   addInputHandler: ->
     Backbone.Stickit.addHandler
-      selector: ".phone,.roles,.employment"
+      selector: ".phone,.roles,.employment,.location"
       events: ['change']
       onSet: 'update'
 
