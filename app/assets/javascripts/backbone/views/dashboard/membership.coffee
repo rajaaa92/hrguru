@@ -9,12 +9,15 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
   initialize: ->
     super()
     @user = @options.users.get(@model.get('user_id'))
-    @now = moment()
 
   finishMembership: (event) ->
-    to = moment(gon.currentTime).add(moment().diff(@now))
-    @model.save({ to: to }, { patch: true, success: @finishedMembership })
+    to = H.currentTime().format()
+    @model.save({ to: to }, { patch: true, success: @finishedMembership, error: @onMembershipError })
 
   finishedMembership: =>
     @trigger('membership:finished')
     @close()
+
+  onMembershipError: (membership, request) =>
+    error_massage = request.responseJSON.errors.project[0]
+    Messenger().error(error_massage)
