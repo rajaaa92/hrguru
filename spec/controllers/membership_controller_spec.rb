@@ -95,7 +95,7 @@ describe MembershipsController do
         its(:status) { should be 400 }
 
         it 'returns error messages' do
-          expect(json_response['errors']).to be
+          expect(json_response['errors']).to be_present
         end
       end
     end
@@ -136,11 +136,27 @@ describe MembershipsController do
 
     describe "json format" do
       render_views
+      subject { response }
+      before { put :update, id: membership, membership: params, format: :json }
 
-      it "returns json" do
-        attributes = { to: Time.new(2002, 10, 26, 15, 2) }
-        put :update, id: membership, membership: attributes, format: :json
-        expect(Time.parse(json_response['to'])).to eql attributes[:to]
+      context 'valid params' do
+        let(:params) { { to: Time.new(2002, 10, 26, 15, 2) } }
+
+        its(:status) { should be 200 }
+
+        it 'returns json' do
+          expect(Time.parse(json_response['to'])).to eql params[:to]
+        end
+      end
+
+      context 'invalid params' do
+        let(:params) { { to: Time.new(2001, 10, 26, 15, 2) } }
+
+        its(:status) { should be 400 }
+
+        it 'returns json' do
+          expect(json_response['errors']).to be_present
+        end
       end
     end
   end
