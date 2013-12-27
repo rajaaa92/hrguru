@@ -27,6 +27,9 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
   removeMembership: (item_view) ->
     @memberships.remove(item_view.model)
     @resetCollection()
+    user_name = item_view.user.get('name')
+    project_name = @model.get('name')
+    Messenger().success("#{user_name} has been removed from #{project_name}")
 
   onRender: ->
     selectize = @$('.new-membership input').selectize
@@ -57,9 +60,14 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
       success: @membershipCreated
       error: @membershipError
 
-  membershipCreated: =>
+  membershipCreated: (membership) =>
     @selectize.clear()
     @resetCollection()
+    user_name = @users.get(membership.get('user_id')).get('name')
+    project_name = @model.get('name')
+    Messenger().success("#{user_name} has been added to #{project_name}")
 
-  membershipError: =>
-    #TODO
+  membershipError: (membership, request)=>
+    @selectize.clear()
+    error_massage = request.responseJSON.errors.project[0]
+    Messenger().error(error_massage)
