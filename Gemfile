@@ -33,6 +33,7 @@ gem 'gon'
 gem 'simple_form'
 gem 'selectize-rails'
 gem 'font-awesome-rails'
+gem 'messengerjs-rails'
 
 group :development do
   gem 'better_errors'
