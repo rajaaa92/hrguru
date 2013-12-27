@@ -14,7 +14,7 @@
           %td= membership.user.decorate.name
           %td= membership.role
           %td= membership.from.to_date
-          %td= membership.to ? membership.to.to_date : content_tag("span", "till now", class: "label label-success")
+          %td= membership.to ? membership.to.to_date : content_tag("span", "unexpired", class: "label label-default")
           %td
             = link_to "Edit", edit_membership_path(membership), class: "btn btn-xs btn-default"
             = link_to "Destroy", membership, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"
