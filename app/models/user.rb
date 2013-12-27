@@ -53,6 +53,17 @@ class User
     memberships.includes(:project).or({ :from.lte => now, to: nil }, { :from.lte => now, :to.gte => now }).map(&:project)
   end
 
+  def memberships_by_project
+    Project.unscoped do
+      memberships.includes(:project, :role).group_by(&:project_id).reduce({}) do |projects, array|
+        memberships = array[1].sort{ |m1, m2| m2.from <=> m1.from }
+        project = memberships.first.project
+        projects[project] = MembershipDecorator.decorate_collection memberships
+        projects
+      end
+    end
+  end
+
   def validate_internship
     if intern_start && intern_end && (intern_start > intern_end)
       errors.add(:intern_end, "internship must not end before it starts")

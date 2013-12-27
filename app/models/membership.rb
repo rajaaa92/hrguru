@@ -30,6 +30,14 @@ class Membership
     end
   end
 
+  def started?
+    from < Time.now
+  end
+
+  def terminated?
+    to.try('<', Time.now) || false
+  end
+
   private
 
   def validate_from_to

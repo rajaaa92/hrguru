@@ -1,4 +1,17 @@
-%h1
-  = user.gravatar_image class: "img-rounded", alt: user.name
-  = user.name
-= mail_to user.email, "send email"
+.row
+  .col-sm-6
+    %h1
+      = user.gravatar_image class: "img-rounded", alt: user.name
+      = user.name
+    = mail_to user.email, "send email"
+  .col-sm-6
+    .list-group
+      - for project, memberships in user.memberships_by_project
+        .list-group-item
+          %h4.list-group-item-heading= project
+          .list-group
+            - for m in memberships
+              = link_to edit_membership_path(m), class: 'list-group-item' do
+                = m.date_range
+                %span.badge= m.duration_in_words
+                = m.role.label
