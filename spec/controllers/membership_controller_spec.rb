@@ -67,14 +67,35 @@ describe MembershipsController do
 
     describe "json format" do
       render_views
+      subject { response }
 
-      it "returns json" do
-        post :create, membership: params, format: :json
-        %w(project_id role_id user_id).each do |key|
-          expect(json_response[key]).to eql params[key]
+      context 'valid params' do
+        before { post :create, membership: params, format: :json }
+
+        its(:status) { should be 200 }
+
+        it 'returns json' do
+          %w(project_id role_id user_id).each do |key|
+            expect(json_response[key]).to eql params[key]
+          end
+          %w(from to).each do |key|
+            expect(Time.parse(json_response[key])).to eql Time.parse(params[key])
+          end
         end
-        %w(from to).each do |key|
-          expect(Time.parse(json_response[key])).to eql Time.parse(params[key])
+      end
+
+
+      context 'invalid params' do
+        let(:invalid_params) do
+          params[:to] = (Time.parse(params['from']) - 1.day).to_s
+          params
+        end
+        before { post :create, membership: invalid_params, format: :json }
+
+        its(:status) { should be 400 }
+
+        it 'returns error messages' do
+          expect(json_response['errors']).to be
         end
       end
     end

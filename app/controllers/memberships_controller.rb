@@ -16,7 +16,7 @@ class MembershipsController < ApplicationController
     else
       respond_to do |format|
         format.html { render :new }
-        format.json { render json: { errors: membership.errors } }
+        format.json { render json: { errors: membership.errors }, status: 400 }
       end
     end
   end
@@ -30,7 +30,7 @@ class MembershipsController < ApplicationController
     else
       respond_to do |format|
         format.html { render :edit }
-        format.json { render json: { errors: membership.errors } }
+        format.json { render json: { errors: membership.errors }, status: 400 }
       end
     end
   end
