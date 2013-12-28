@@ -2,7 +2,7 @@ class Hrguru.Helper
 
   constructor: (options)->
     @time_now = moment()
-    @server_time = gon.currentTime
+    @server_time = gon.currentTime if gon?
 
     @setMessengerOptions()
     @addViewHelpers()
@@ -22,7 +22,7 @@ class Hrguru.Helper
         globals[helper] = (values...) ->
           JST["helpers/#{helper}"](values.reduce (x, value) ->
             param = params[values.indexOf value]
-            x[param]= value
+            x[param] = value
             x
           , {})
 
