@@ -32,9 +32,16 @@ class RolesController < ApplicationController
     end
   end
 
+  def sort
+    params[:role].each_with_index do |id, index|
+      Role.where(id: id).update_all(priority: index + 1)
+    end
+    render json: {}
+  end
+
   private
 
   def role_params
-    params.require(:role).permit(:name, :priority, :color)
+    params.require(:role).permit(:name, :color)
   end
 end

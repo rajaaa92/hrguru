@@ -6,6 +6,12 @@ body.roles {
       margin: 0;
       li {
         margin-bottom: 5px;
+        .role-drag {
+          i {
+            cursor: move;
+            margin-right: 5px;
+          }
+        }
         input {
           &.priority, &.color { padding: 0; }
           &.priority { width: 40px; }

@@ -1,6 +1,6 @@
 .input-group
-  .input-group-addon
-    %input.priority{ type: 'number', min: 1 }
+  .input-group-addon.role-drag
+    != @icon 'arrows-v'
     %input.color{ type: 'color' }
   %input.name.form-control
   .input-group-btn

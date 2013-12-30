@@ -4,13 +4,13 @@ class Hrguru.Views.RolesEmptyRow extends Backbone.Marionette.ItemView
 
 class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
   tagName: 'li'
+  id: -> "role_#{@model.get('id')}"
   template: JST['roles/row']
 
   initialize: -> @addInputHandler()
 
   bindings:
     '.name': 'name'
-    '.priority': 'priority'
     '.color': 'color'
 
   events:
@@ -21,7 +21,7 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
 
   addInputHandler: ->
     Backbone.Stickit.addHandler
-      selector: '.name,.priority,.color'
+      selector: '.name,.color'
       events: ['change']
       onSet: 'update'
 
@@ -32,9 +32,7 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
     attr[attr_name] = val
     @model.save(attr,
       patch: true
-      success: =>
-        @trigger('collection:sort') if attr_name == 'priority'
-        @hideError()
+      success: => @hideError()
       error: => @showError()
     )
 

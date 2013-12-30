@@ -16,7 +16,9 @@ Hrguru::Application.routes.draw do
   resources :users, only: [:index, :show, :update]
   resources :projects
   resources :memberships, except: [:show]
-  resources :roles, except: [:new, :edit]
+  resources :roles, except: [:new, :edit] do
+    post 'sort', on: :collection
+  end
 
   root 'welcome#index'
   get '/github_connect', to: 'welcome#github_connect'
