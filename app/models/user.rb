@@ -55,11 +55,10 @@ class User
 
   def memberships_by_project
     Project.unscoped do
-      memberships.includes(:project, :role).group_by(&:project_id).reduce({}) do |projects, array|
-        memberships = array[1].sort{ |m1, m2| m2.from <=> m1.from }
+      memberships.includes(:project, :role).group_by(&:project_id).each_with_object({}) do |data, memo|
+        memberships = data[1].sort{ |m1, m2| m2.from <=> m1.from }
         project = memberships.first.project
-        projects[project] = MembershipDecorator.decorate_collection memberships
-        projects
+        memo[project] = MembershipDecorator.decorate_collection memberships
       end
     end
   end
