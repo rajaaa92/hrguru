@@ -28,6 +28,7 @@ gem 'therubyracer'
 
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'js_stack'
 gem 'gon'
 gem 'simple_form'
