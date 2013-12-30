@@ -1,6 +1,9 @@
-class Hrguru.Views.DashboardIndex extends Backbone.View
+class Hrguru.Views.DashboardIndex extends Marionette.View
 
   el: '#main-container'
+
+  ui:
+    table: '#projects-users'
 
   initialize: ->
     @now = moment()
@@ -12,6 +15,7 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
     @render()
 
   render: ->
+    @bindUIElements()
     @fillTable()
     filters_view = new Hrguru.Views.Dashboard.Filters(projects: @projects, roles: @roles)
     filters_view.render()
@@ -23,4 +27,4 @@ class Hrguru.Views.DashboardIndex extends Backbone.View
         memberships: @memberships
         roles: @roles
         users: @users
-      @$('#projects-users').append(view.render().$el)
+      @ui.table.append(view.render().$el)
