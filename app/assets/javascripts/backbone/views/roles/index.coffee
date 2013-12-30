@@ -16,8 +16,16 @@ class Hrguru.Views.RolesIndex extends Backbone.View
       axis: 'y'
       cursor: 'move'
       items: 'li:not(.no-sortable)'
-      update: ->
-        $.post Routes.sort_roles_path(), $(this).sortable('serialize')
+      update: (event, ui) =>
+        $li = $(ui.item)
+        $ul = $li.parent()
+        role = $li.find('.name').val()
+        position = $ul.find('li').index($li)
+        $.post(Routes.sort_roles_path(), $ul.sortable('serialize'), ->
+          Messenger().success("#{role} has been moved to position #{position}")
+        ).fail =>
+          @rolesListView.render()
+          Messenger().error("Cannot move #{role} to position #{position}")
 
     @rolesListView.render()
 
