@@ -33,7 +33,7 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
     @model.save(attr,
       patch: true
       success: => @hideError()
-      error: => @showError()
+      error: (model, xhr) => @showError(xhr.responseJSON.errors)
     )
 
   destroy: (event) ->
@@ -44,7 +44,10 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
         error: ->
           alert "Cannot destroy role... Try later."
 
-  showError: ->
+  showError: (errorsJSON = {}) ->
+    for attr, errors of errorsJSON
+      Messenger().error("#{attr} #{msg}") for msg in errors
+
     @input.wrap("<div class='has-error'></div>") unless @hasError()
 
   hideError: ->
