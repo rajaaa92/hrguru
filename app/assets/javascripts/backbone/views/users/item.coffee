@@ -60,15 +60,14 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
       patch: true
       success: (model, response, options) =>
         @hideError($input)
-        @showPopover($input, 'updated!')
-      error: (model, response, options) =>
-        errors = response.responseJSON.errors
-        msg = _.first(errors[attr_name])
-        @showError($input)
-        @showPopover($input, msg)
+        th_name = $('table').find('th').eq($input.closest('td').index()).text()
+        Messenger().success("#{th_name} has been updated")
+      error: (model, xhr) => @showError($input, xhr.responseJSON.errors)
     )
 
-  showError: ($element) ->
+  showError: ($element, errorsJSON = {}) ->
+    for attr, errors of errorsJSON
+      Messenger().error(msg) for msg in errors
     $element.wrap("<div class='has-error'></div>") unless @hasError($element)
 
   hideError: ($element) ->
@@ -76,16 +75,3 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
 
   hasError: ($element) ->
     $element.parent().is('div.has-error')
-
-  showPopover: ($element, msg) ->
-    $element
-      .popover
-        html : true
-        placement: 'top'
-        content: msg
-        trigger: 'manual'
-      .on 'shown.bs.popover', ->
-        setTimeout ->
-          $element.popover('destroy')
-        , 3000
-      .popover('show')
