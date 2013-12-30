@@ -28,3 +28,5 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
         roles: @roles
         users: @users
       @ui.table.append(view.render().$el)
+
+    @ui.table.css(width: @projects.length * 200)
