@@ -41,6 +41,10 @@ body.dashboard {
             float: right;
             cursor: pointer;
           }
+
+          &.left-7 { background: $left-time-red; color: white; }
+          &.left-14 { background: lighten($left-time-red, 20); }
+          &.left-30 { background: lighten($left-time-red, 50); }
         }
 
         .fake-membership {
