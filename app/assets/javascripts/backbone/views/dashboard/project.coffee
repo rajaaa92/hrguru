@@ -23,6 +23,7 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
     collection = @memberships.for_project(@model.get('id'), @roles)
     @collection.reset(collection.models) if @collection?
     @collection ||= collection
+    @refreshSelectizeOptions()
 
   removeMembership: (item_view) ->
     @memberships.remove(item_view.model)
@@ -37,11 +38,19 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
       valueField: 'id'
       labelField: 'name'
       searchField: 'name'
-      options: @options.users.toJSON()
+      options: @selectize_options
       onItemAdd: @newMembership
       render:
         option: (item, escape) => @completionTemplate(item)
     @selectize = selectize[0].selectize
+
+  refreshSelectizeOptions: ->
+    selected = _.compact(@collection.pluck('user_id'))
+    to_select = @users.select (model) -> !(model.get('id') in selected)
+    @selectize_options = to_select.map (model) -> model.toJSON()
+    if @selectize?
+      @selectize.clearOptions()
+      @selectize.load (callback) => callback(@selectize_options)
 
   toggleVisibility: (ids) ->
     if ids.length == 0
