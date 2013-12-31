@@ -4,7 +4,7 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
 
   initialize: ->
     @addInputHandler()
-    @addDateHandler()
+    @model.on 'change', @onChange, this
 
   bindings:
     '.intern_start': 'intern_start'
@@ -36,32 +36,19 @@ class Hrguru.Views.UsersRow extends Backbone.Marionette.ItemView
 
   addInputHandler: ->
     Backbone.Stickit.addHandler
-      selector: ".phone,.roles,.employment,.location"
+      selector: '.phone,.roles,.employment,.location,.date_picker'
       events: ['change']
-      onSet: 'update'
 
-  addDateHandler: ->
-    Backbone.Stickit.addHandler
-      selector: '.date_picker'
-      events: ['hide']
-      onSet: 'update'
-
-  update: (val, options) ->
-    attr_name = options.observe
-    attr_value = @model.get(attr_name)
-    unless (!attr_value && !val) || (attr_value == val)
-      attrObj = {}
-      attrObj[attr_name] = val
-      @save(attrObj, attr_name)
-
-  save: (attrObj, attr_name) ->
-    $input = @$el.find(".#{attr_name}")
+  onChange: ->
+    attrObj = @model.changedAttributes()
+    attrName = _.keys(attrObj)[0]
+    $input = @$el.find(".#{attrName}")
     @model.save(attrObj,
       patch: true
       success: (model, response, options) =>
         @hideError($input)
-        th_name = $('table').find('th').eq($input.closest('td').index()).text()
-        Messenger().success("#{th_name} has been updated")
+        thName = $('table').find('th').eq($input.closest('td').index()).text()
+        Messenger().success("#{thName} has been updated")
       error: (model, xhr) => @showError($input, xhr.responseJSON.errors)
     )
 

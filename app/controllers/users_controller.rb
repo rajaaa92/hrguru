@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def update
     if user.save
-      render :user
+      render json: {}
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
