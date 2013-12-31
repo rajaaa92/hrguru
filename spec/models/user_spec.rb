@@ -5,8 +5,32 @@ describe User do
 
   it { should have_many :memberships }
   it { should belong_to :role }
-  it { should be_valid }
-  it { should validate_inclusion_of(:location).to_allow(['Warsaw', 'Poznan', 'Remotely']) }
+
+  context "validation" do
+    it { should be_valid }
+    it { should validate_inclusion_of(:location).to_allow(['Warsaw', 'Poznan', 'Remotely']) }
+
+    describe "internship" do
+      context "valid" do
+        it "with no end date" do
+          subject.intern_end = nil
+          expect(subject).to be_valid
+        end
+      end
+
+      context "invalid" do
+        it "with no start date" do
+          subject.intern_start = nil
+          expect(subject).to_not be_valid
+        end
+
+        it "with end date before start date" do
+          subject.intern_end = subject.intern_start - 3.days
+          expect(subject).to_not be_valid
+        end
+      end
+    end
+  end
 
   describe "#current_projects" do
     let(:user) { create(:user) }
