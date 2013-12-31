@@ -1,6 +1,6 @@
 class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembership
 
-  className: 'membership'
+  className: -> @cssClasses()
   template: JST['dashboard/membership']
 
   events:
@@ -21,3 +21,13 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
   onMembershipError: (membership, request) =>
     error_massage = request.responseJSON.errors.project[0]
     Messenger().error(error_massage)
+
+  cssClasses: ->
+    base_class = 'membership'
+    return base_class unless @model.get('to')?
+
+    classes = Array(base_class)
+    to = moment(@model.get('to'))
+    left = _.find [1, 7, 14, 30], (day) -> H.currentTime().add(days: day) > to
+    classes.push("left-#{left}") if left?
+    classes.join(' ')
