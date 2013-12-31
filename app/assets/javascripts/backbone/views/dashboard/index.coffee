@@ -17,7 +17,7 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
   render: ->
     @bindUIElements()
     @fillTable()
-    filters_view = new Hrguru.Views.Dashboard.Filters(projects: @projects, roles: @roles)
+    filters_view = new Hrguru.Views.Dashboard.Filters(@projects, @roles)
     filters_view.render()
 
   fillTable: ->

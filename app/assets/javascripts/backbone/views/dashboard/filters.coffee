@@ -2,9 +2,7 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
 
   el: '#filters'
 
-  initialize: ->
-    @projects = @options.projects
-    @roles = @options.roles
+  initialize: (@projects, @roles) ->
 
   render: ->
     @initializeRoleFilter()
