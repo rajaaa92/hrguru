@@ -16,7 +16,10 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
     @listenTo(Backbone, 'projects:toggleVisibility', @toggleVisibility)
 
   getItemView: (item) ->
-    name = if item.get('fake') then 'FakeMembership' else 'Membership'
+    name = switch
+      when item.get('fake') then 'FakeMembership'
+      when !item.started() then 'UnstartedMembership'
+      else 'Membership'
     Hrguru.Views.Dashboard[name]
 
   resetCollection: ->
