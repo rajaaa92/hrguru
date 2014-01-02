@@ -23,11 +23,11 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
     Messenger().error(error_massage)
 
   cssClasses: ->
-    base_class = 'membership'
-    return base_class unless @model.get('to')?
+    result = Array('membership')
 
-    classes = Array(base_class)
-    to = moment(@model.get('to'))
-    left = _.find [1, 7, 14, 30], (day) -> H.currentTime().add(days: day) > to
-    classes.push("left-#{left}") if left?
-    classes.join(' ')
+    if @model.started() && @model.daysToEnd()?
+      left = _.find [1, 7, 14, 30], (day) => day >= @model.daysToEnd()
+      result.push("left-#{left}") if left?
+
+    result.push('unstarted hide') unless @model.started()
+    result.join(' ')

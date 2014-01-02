@@ -1,5 +1,12 @@
 class Hrguru.Models.Membership extends Backbone.Model
 
+  started: ->
+    H.currentTime() > moment(@get('from'))
+
+  daysToEnd: ->
+    return null unless @get('to')?
+    moment(@get('to')).diff(H.currentTime(), 'days')
+
 class Hrguru.Collections.Memberships extends Backbone.Collection
   model: Hrguru.Models.Membership
   url: Routes.memberships_path()
