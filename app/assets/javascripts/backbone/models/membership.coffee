@@ -13,10 +13,10 @@ class Hrguru.Collections.Memberships extends Backbone.Collection
 
   for_project: (project_id, roles) ->
     result = Array()
-    base = @where(project_id: project_id)
+    base = @select (m) -> m.get('project_id') == project_id && m.started()
 
     roles.each (role) ->
-      with_role = _.select(base, (membership) -> membership.get('role_id') == role.get('id'))
+      with_role = _.select base, (m) -> m.get('role_id') == role.get('id')
       if with_role.length == 0
         user = UserFactory.basedOnRole(role)
         attributes = { role_id: role.get('id'), fake: true, virtual_user: user }
