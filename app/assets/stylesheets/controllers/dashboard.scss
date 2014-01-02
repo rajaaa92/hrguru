@@ -6,10 +6,15 @@ body.dashboard {
 
     #filters {
       margin: 0 auto;
-      width: 805px;
+      width: 955px;
       .roles, .projects {
         width: 400px;
         display: inline-block;
+      }
+
+      .checkboxes {
+        display: inline-block;
+        margin-right: 20px;
       }
     }
 
