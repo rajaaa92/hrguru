@@ -20,7 +20,7 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
     Hrguru.Views.Dashboard[name]
 
   resetCollection: ->
-    collection = @memberships.for_project(@model.get('id'), @roles)
+    collection = @memberships.forProject(@model.get('id'), @roles)
     @collection.reset(collection.models) if @collection?
     @collection ||= collection
     @refreshSelectizeOptions()

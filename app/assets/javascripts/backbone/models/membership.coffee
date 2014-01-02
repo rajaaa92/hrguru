@@ -11,7 +11,7 @@ class Hrguru.Collections.Memberships extends Backbone.Collection
   model: Hrguru.Models.Membership
   url: Routes.memberships_path()
 
-  for_project: (project_id, roles) ->
+  forProject: (project_id, roles) ->
     result = Array()
     base = @select (m) -> m.get('project_id') == project_id && m.started()
 
