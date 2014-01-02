@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   expose(:projects) { Project.all.asc(:name) }
   expose(:roles) { Role.all }
   expose(:users) { User.all.decorate }
-  expose(:memberships) { Membership.active }
+  expose(:memberships) { Membership.unfinished }
 
   def index
     gon.rabl template: 'app/views/dashboard/users', as: 'users'

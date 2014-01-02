@@ -19,7 +19,7 @@ class Membership
 
   scope :with_role, ->(role) { where(role: role) }
   scope :with_user, ->(user) { where(user: user) }
-  scope :active, -> { any_of({ :from.lt => Time.now, to: nil }, { :from.lt => Time.now, :to.gt => Time.now })}
+  scope :unfinished, -> { any_of({ to: nil }, { :to.gt => Time.now }) }
 
   %w(user project role).each do |model|
     original_model = "original_#{model}"
