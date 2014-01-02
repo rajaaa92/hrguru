@@ -13,14 +13,19 @@ class Hrguru.Collections.Memberships extends Backbone.Collection
 
   forProject: (project_id, roles) ->
     result = Array()
-    base = @select (m) -> m.get('project_id') == project_id && m.started()
+    base = @where(project_id: project_id)
+    started = _.select base, (m) -> m.started()
+    unstarted = _.select base, (m) -> !m.started()
 
     roles.each (role) ->
-      with_role = _.select base, (m) -> m.get('role_id') == role.get('id')
-      if with_role.length == 0
+      started_role = _.select started, (m) -> m.get('role_id') == role.get('id')
+      unstarted_role = _.select unstarted, (m) -> m.get('role_id') == role.get('id')
+      result.push.apply(result, unstarted_role) if unstarted_role.length > 0
+      if started_role.length == 0
         user = UserFactory.basedOnRole(role)
         attributes = { role_id: role.get('id'), fake: true, virtual_user: user }
-        with_role = Array(new Hrguru.Models.Membership(attributes))
-      result.push.apply(result, with_role)
+        started_role = Array(new Hrguru.Models.Membership(attributes))
+
+      result.push.apply(result, started_role)
 
     new Hrguru.Collections.Memberships(result)
