@@ -2,6 +2,10 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
 
   el: '#filters'
 
+  events:
+    'change #highlight-ending' : 'highlightEndingChanged'
+    'change #show-next' : 'showNextChanged'
+
   initialize: (@projects, @roles) ->
 
   render: ->
@@ -39,3 +43,9 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
 
   filterRoles: =>
     Backbone.trigger('roles:toggleVisibility', @roles_selectize.items)
+
+  highlightEndingChanged: (event) ->
+    Backbone.trigger('memberships:highlightEnding', event.currentTarget.checked)
+
+  showNextChanged: (event) ->
+    Backbone.trigger('memberships:showNext', event.currentTarget.checked)
