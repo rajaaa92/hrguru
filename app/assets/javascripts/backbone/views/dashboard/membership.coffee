@@ -1,6 +1,6 @@
 class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembership
 
-  className: -> @cssClasses()
+  className: 'membership'
   template: JST['dashboard/membership']
 
   events:
@@ -9,6 +9,7 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
   initialize: ->
     super()
     @user = @options.users.get(@model.get('user_id'))
+    @listenTo(Backbone, 'memberships:highlightEnding', @highlightEnding)
 
   finishMembership: (event) ->
     to = H.currentTime().format()
@@ -22,12 +23,8 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
     error_massage = request.responseJSON.errors.project[0]
     Messenger().error(error_massage)
 
-  cssClasses: ->
-    result = Array('membership')
+  highlightEnding: (state) ->
+    return unless @model.started() && @model.daysToEnd()?
 
-    if @model.started() && @model.daysToEnd()?
-      left = _.find [1, 7, 14, 30], (day) => day >= @model.daysToEnd()
-      result.push("left-#{left}") if left?
-
-    result.push('unstarted hide') unless @model.started()
-    result.join(' ')
+    left = _.find [1, 7, 14, 30], (day) => day >= @model.daysToEnd()
+    @$el.toggleClass("left-#{left}", state) if left?
