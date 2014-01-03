@@ -56,11 +56,7 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
       @selectize.load (callback) => callback(@selectize_options)
 
   toggleVisibility: (ids) ->
-    if ids.length == 0
-      @$el.removeClass('hide')
-      return
-
-    show = @model.get('id') in ids
+    show = ids.length == 0 || @model.get('id') in ids
     @$el.toggleClass('hide', !show)
 
   newMembership: (value, $item) =>
