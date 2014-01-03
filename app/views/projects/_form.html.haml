@@ -1,5 +1,6 @@
 = simple_form_for project do |f|
   = f.input :name
+  = f.input :end_at, as: :date_picker, wrapper: :prepend, label_html: { class: 'input-group-addon' }
   .actions
     = link_to "Back", :back, class: "btn btn-default btn-sm"
     = f.button :submit, "Save", class: "btn-success"

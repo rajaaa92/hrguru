@@ -6,6 +6,7 @@ class Project
   after_destroy :end_mamberships
 
   field :name
+  field :end_at, type: Time
 
   has_many :memberships
 
