@@ -47,9 +47,24 @@ body.dashboard {
             cursor: pointer;
           }
 
-          &.left-7 { background: $left-time-red; color: white; }
-          &.left-14 { background: lighten($left-time-red, 20); }
-          &.left-30 { background: lighten($left-time-red, 50); }
+          .time {
+            display: none;
+            font-size: 12px;
+          }
+
+          &[class*='left-'] {
+            .role-indicator { display: none; }
+            .time { display: block; }
+          }
+
+          &.left-1 { background: $left-time-red; color: white; }
+          &.left-7 { background: lighten($left-time-red, 20); color: white; }
+          &.left-14 { background: lighten($left-time-red, 40); }
+          &.left-30 { background: lighten($left-time-red, 55); }
+
+          &.unstarted {
+            .time { display: block; }
+          }
         }
 
         .fake-membership {
