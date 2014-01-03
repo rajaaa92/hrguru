@@ -1,1 +1,4 @@
 %span.name= @user.name
+.time
+  Od
+  %time= moment(@from).format('LL')

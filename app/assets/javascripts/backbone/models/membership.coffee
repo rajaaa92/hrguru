@@ -25,7 +25,6 @@ class Hrguru.Collections.Memberships extends Backbone.Collection
         user = UserFactory.basedOnRole(role)
         attributes = { role_id: role.get('id'), fake: true, virtual_user: user }
         started_role = Array(new Hrguru.Models.Membership(attributes))
-
       result.push.apply(result, started_role)
 
     new Hrguru.Collections.Memberships(result)
