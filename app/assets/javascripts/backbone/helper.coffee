@@ -6,6 +6,7 @@ class Hrguru.Helper
 
     @setMessengerOptions()
     @addViewHelpers()
+    moment().lang('pl')
 
   currentTime: ->
     moment(@server_time).add(moment().diff(@time_now))

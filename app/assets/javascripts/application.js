@@ -14,5 +14,6 @@
 //= require js_stack/backbone.stickit
 //= require js_stack/backbone.virtualcollection
 //= require js_stack/moment
+//= require moment/pl.js
 //= require backbone/hrguru
 //= require_tree .
