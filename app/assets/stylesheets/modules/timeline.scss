@@ -1,4 +1,7 @@
 .timeline {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
   min-height: 300px;
   -webkit-text-size-adjust: none;
   position: relative;
