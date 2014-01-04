@@ -11,6 +11,10 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show
+    gon.events = get_events(3.months)
+  end
+
   def update
     if project.save
       redirect_to project, alert: "Project updated!"
@@ -27,5 +31,13 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name, :end_at)
+  end
+
+  def get_events(range)
+    project.memberships_in_range(range).map do |m|
+      event = { text: m.user.name, startDate: m.from.to_date }
+      event[:endDate] = m.to.to_date if m.to
+      event
+    end
   end
 end

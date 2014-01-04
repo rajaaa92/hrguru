@@ -16,6 +16,12 @@ class Project
     name
   end
 
+  def memberships_in_range(days)
+    time = Time.now
+    range = (time - days)..(time + days)
+    User.unscoped { memberships.includes(:user).or({ from: range }, { to: range }) }
+  end
+
   private
 
   def end_mamberships

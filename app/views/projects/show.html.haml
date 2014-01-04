@@ -1,3 +1,7 @@
-%h1
-  = link_to 'Edit', edit_project_path(project), class: "btn btn-default btn-xs"
-  = project.name
+.page-header
+  %h1
+    = project.name
+    = link_to 'Edit', edit_project_path(project), class: "btn btn-default btn-xs"
+
+%i.text-muted timeline of related users
+.timeline
