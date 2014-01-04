@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery.ui.all
+//= require jquery.scrollTo
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker
