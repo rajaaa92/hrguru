@@ -7,6 +7,8 @@ class MembershipsController < ApplicationController
   expose(:roles) { Role.decorate }
   expose(:users) { User.decorate }
 
+  before_action :set_users_gon, only: [:new, :create]
+
   def create
     if membership.save
       respond_to do |format|
@@ -43,5 +45,11 @@ class MembershipsController < ApplicationController
 
   def membership_params
     params.require(:membership).permit(:from, :to, :project_id, :user_id, :role_id)
+  end
+
+  private
+
+  def set_users_gon
+    gon.rabl template: 'app/views/memberships/users', as: 'users'
   end
 end
