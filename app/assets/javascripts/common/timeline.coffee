@@ -47,7 +47,9 @@
       renderEventTitle: (event) ->
         display = (date) -> moment(event[date]).format "D MMM"
         endDate = -> if event.endDate then display('endDate') else 'unexpired'
-        "<span>#{display('startDate')} - #{endDate()}</span> #{event.text}&nbsp;&nbsp;"
+        eventTitle = "<span>#{display('startDate')}"
+        eventTitle += " - #{endDate()}" if event.startDate != event.endDate
+        eventTitle += "</span> #{event.text}&nbsp;&nbsp;"
 
       renderMonths: (firstDate, lastDate) ->
         [html, width, days] = ["", 0, 0]
