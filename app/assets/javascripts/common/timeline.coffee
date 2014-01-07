@@ -12,7 +12,7 @@
         [firstDate, lastDate] = @getLimits()
         @setEnds(firstDate, lastDate)
 
-        html = @renderMonths(firstDate, lastDate)
+        html = @renderMonths()
         html += @renderEvent(e) for e in events
         @$el.html(html)
 
@@ -51,10 +51,10 @@
         eventTitle += " - #{endDate()}" if event.startDate != event.endDate
         eventTitle += "</span> #{event.text}&nbsp;&nbsp;"
 
-      renderMonths: (firstDate, lastDate) ->
+      renderMonths: ->
         [html, width, days] = ["", 0, 0]
-        months = moment(lastDate).diff(firstDate, "months")
-        titleDateM = moment(firstDate)
+        months = @endTimelineM.diff(@startTimelineM, 'months')
+        titleDateM = moment(@startTimelineM)
         prevDate = titleDateM
 
         for n in [0..months]
@@ -72,7 +72,7 @@
       eventWidth: (event) ->
         startDate = event.startDate
         endDate = event.endDate
-        daysDiff = if endDate then @daysDiff(moment(endDate), startDate) else @daysDiff(@endTimelineM, startDate)
+        daysDiff = if endDate then @daysDiff(moment(endDate), startDate) else @daysDiff(@endTimelineM, startDate) + 1
         @daysLength(daysDiff)
 
       daysLength: (days) -> (days * @config.dayLength).toFixed(2)
