@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
 
   def get_events(range)
     project.memberships_in_range(range).map do |m|
-      event = { text: m.user.name, startDate: m.from.to_date }
+      event = { text: m.user.decorate.name, startDate: m.from.to_date }
       event[:endDate] = m.to.to_date if m.to
       event
     end

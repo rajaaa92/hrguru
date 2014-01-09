@@ -1,6 +1,10 @@
 class UserDecorator < Draper::Decorator
   delegate_all
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   def link
     h.link_to name, object
   end

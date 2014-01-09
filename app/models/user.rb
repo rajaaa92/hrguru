@@ -44,10 +44,6 @@ class User
     User.create!(attributes)
   end
 
-  def name
-    "#{first_name} #{last_name}"
-  end
-
   def github_connected?
     gh_nick.present?
   end
