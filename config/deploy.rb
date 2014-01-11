@@ -1,7 +1,8 @@
 # -*- encoding : utf-8 -*-
 task :production do
   set :stage, 'production'
-  set :webserver, "hrguru.p.netguru.co"
+  set :webserver, "netguru.p.netguru.co"
+  before 'deploy:update', 'netguru:backup'
 end
 
 set :application, "hrguru"
