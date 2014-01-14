@@ -62,7 +62,8 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
   newMembership: (value, $item) =>
     from = H.currentTime().format()
     role = @options.users.get(value).get('role_id')
-    attributes = { project_id: @model.get('id'), role_id: role, user_id: value, from: from }
+    billable = @options.roles.get(role).get('billable')
+    attributes = { project_id: @model.get('id'), role_id: role, user_id: value, from: from, billable: billable }
     @memberships.create attributes,
       wait: true
       success: @membershipCreated

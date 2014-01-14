@@ -6,6 +6,7 @@
       %th Role
       %th From
       %th To
+      %th Billable?
       %th
     %tbody
       - memberships.each do |membership|
@@ -15,6 +16,7 @@
           %td= membership.role
           %td= membership.from.to_date
           %td= membership.to ? membership.to.to_date : content_tag("span", "unexpired", class: "label label-default")
+          %td= membership.billable
           %td
             = link_to "Edit", edit_membership_path(membership), class: "btn btn-xs btn-default"
             = link_to "Destroy", membership, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"

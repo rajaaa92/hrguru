@@ -11,6 +11,7 @@
       = g.association :project, collection: projects
       = g.association :user, collection: users
       = g.association :role, collection: roles
+      = g.input :billable, as: :boolean
 
     .actions
       = f.button :submit, class: "btn-success"

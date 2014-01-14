@@ -12,10 +12,14 @@ class Role
   orderable column: :priority
   field :name, type: String
   field :color, type: String
+  field :billable, type: Mongoid::Boolean, default: false
 
   validates :name, presence: true
+  validates :billable, inclusion: { :in => [true, false] }
 
   default_scope asc(:priority)
+  scope :billable, where(billable: true)
+  scope :non_billable, where(billable: false)
 
   def to_s
     name

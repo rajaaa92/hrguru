@@ -1,1 +1,1 @@
-attributes :id, :name, :priority, :color
+attributes :id, :name, :priority, :color, :billable

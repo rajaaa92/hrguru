@@ -44,7 +44,8 @@ class MembershipsController < ApplicationController
   protected
 
   def membership_params
-    params.require(:membership).permit(:from, :to, :project_id, :user_id, :role_id)
+    params.require(:membership).permit(:from, :to, :project_id, :user_id,
+                                       :role_id, :billable)
   end
 
   private

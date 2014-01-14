@@ -1,0 +1,13 @@
+body.memberships {
+  &.new, &.edit {
+    .checkbox{
+      margin-top: 0px;
+      input {
+        &.boolean {
+          width: 21px;
+          height: 21px;
+        }
+      }
+    }
+  }
+}

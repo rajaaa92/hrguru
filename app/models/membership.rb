@@ -4,6 +4,7 @@ class Membership
 
   field :from, type: Time
   field :to, type: Time
+  field :billable, type: Mongoid::Boolean
 
   belongs_to :user
   belongs_to :project
@@ -13,6 +14,8 @@ class Membership
   validates :project, presence: true
   validates :role, presence: true
   validates :from, presence: true
+  validates :billable, inclusion: { :in => [true, false] }
+
 
   validate :validate_from_to
   validate :validate_duplicate_project
