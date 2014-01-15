@@ -4,10 +4,19 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
   template: JST['dashboard/project']
   completionTemplate: JST['dashboard/completion']
 
+  ui:
+    billable_ratio: '.billable_ratio'
+
   itemViewContainer: '.memberships'
   itemViewOptions: ->
     users: @users
     roles: @roles
+
+  collectionEvents:
+    reset: 'refreshView'
+
+  refreshView: ->
+    @updateBillableInfo()
 
   initialize: ->
     $.extend(@, @options)
@@ -46,6 +55,7 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
       render:
         option: (item, escape) => @completionTemplate(item)
     @selectize = selectize[0].selectize
+    @updateBillableInfo()
 
   refreshSelectizeOptions: ->
     selected = _.compact(@collection.pluck('user_id'))
@@ -54,6 +64,13 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
     if @selectize?
       @selectize.clearOptions()
       @selectize.load (callback) => callback(@selectize_options)
+
+  updateBillableInfo: =>
+    billable_counter = _.countBy(@collection.models, (currentObject) ->
+          currentObject.get('billable'))
+    billable = billable_counter.true || 0
+    not_billable = billable_counter.false || 0
+    @ui.billable_ratio.html(billable + "/" + not_billable)
 
   toggleVisibility: (ids) ->
     show = ids.length == 0 || @model.get('id') in ids

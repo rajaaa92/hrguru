@@ -1,4 +1,5 @@
 .project-name= @name
+  .billable_ratio
 .memberships
 .new-membership
   %input{ type: 'text', placeholder: 'Click to add...' }

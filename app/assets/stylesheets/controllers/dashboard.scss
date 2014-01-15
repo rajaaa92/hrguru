@@ -32,6 +32,8 @@ body.dashboard {
           border-top: 1px solid #DDD;
           border-left: 1px solid #DDD;
           border-bottom: 2px solid #DDD;
+
+          .billable_ratio { float: right; }
         }
 
         .membership, .new-membership {
