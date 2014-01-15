@@ -3,6 +3,10 @@
     != @icon 'arrows-v'
     %input.color{ type: 'color' }
   %input.name.form-control
+  .input-group-addon.billable-row
+    .checkbox
+      %label
+        %input.billable{ type: 'checkbox' }
   .input-group-btn
     %a.btn.btn-default{ href: Routes.role_path(@id) }
       != @icon 'angle-double-right'

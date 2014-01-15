@@ -6,3 +6,9 @@
           %span.input-group-btn
             #add-role.btn.btn-primary create
           = text_field_tag 'name', nil, placeholder: 'Enter role name...', class: 'form-control'
+          .input-group-addon.billable-group
+            .checkbox
+              %label
+                %input#billable{ type: 'checkbox' } billable?
+
+

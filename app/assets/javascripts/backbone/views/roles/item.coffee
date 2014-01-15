@@ -12,6 +12,7 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
   bindings:
     '.name': 'name'
     '.color': 'color'
+    '.billable': 'billable'
 
   events:
     'click .destroy': 'destroy'
@@ -21,7 +22,7 @@ class Hrguru.Views.RolesRow extends Backbone.Marionette.ItemView
 
   addInputHandler: ->
     Backbone.Stickit.addHandler
-      selector: '.name,.color'
+      selector: '.name,.color,.billable'
       events: ['change']
       onSet: 'update'
 

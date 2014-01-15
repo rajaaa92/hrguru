@@ -32,9 +32,11 @@ class Hrguru.Views.RolesIndex extends Backbone.View
   addItem: (event) ->
     event.preventDefault()
     $input = $('#name')
+    $checkbox = $('#billable')
     role = new Hrguru.Models.Role()
-    role.save(name: $input.val(),
+    role.save(name: $input.val(), billable: $checkbox.prop('checked'),
       success: =>
         $input.val("")
         @rolesListView.collection.add role
     )
+
