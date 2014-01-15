@@ -15,7 +15,7 @@ class Role
   field :billable, type: Mongoid::Boolean, default: false
 
   validates :name, presence: true
-  validates :billable, inclusion: { :in => [true, false] }
+  validates :billable, inclusion: { in: [true, false] }
 
   default_scope asc(:priority)
   scope :billable, where(billable: true)

@@ -14,7 +14,7 @@ class Membership
   validates :project, presence: true
   validates :role, presence: true
   validates :from, presence: true
-  validates :billable, inclusion: { :in => [true, false] }
+  validates :billable, inclusion: { in: [true, false] }
 
 
   validate :validate_from_to
