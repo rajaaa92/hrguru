@@ -67,7 +67,8 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
 
   updateBillableInfo: =>
     billable_counter = _.countBy(@collection.models, (currentObject) ->
-          currentObject.get('billable'))
+      if currentObject.started()
+        currentObject.get('billable'))
     billable = billable_counter.true || 0
     not_billable = billable_counter.false || 0
     @ui.billable_ratio.html(billable + "/" + not_billable)
