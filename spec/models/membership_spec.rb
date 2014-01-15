@@ -11,6 +11,8 @@ describe Membership do
   it { should be_timestamped_document }
   it { should have_field(:from).of_type(Time) }
   it { should have_field(:to).of_type(Time) }
+  it { should have_field(:billable).of_type(Mongoid::Boolean) }
+  it { should validate_inclusion_of(:billable).to_allow([true, false]) }
 
   describe '#validate_from_to' do
     it "should add an error if 'to' is before 'from'" do
