@@ -1,4 +1,5 @@
 %span.name= @user.name
+%span.icon
 .time
   Od
   %time= moment(@from).format('LL')

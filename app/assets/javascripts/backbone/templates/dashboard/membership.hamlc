@@ -1,5 +1,6 @@
 .role-indicator{ style: "background: #{@role.color}" }
 %span.name= @user.name
+%span.icon
 %span.remove &times;
 - if @show_time
   .time

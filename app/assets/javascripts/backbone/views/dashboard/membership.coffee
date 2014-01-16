@@ -29,7 +29,6 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
 
   highlightEnding: (state) ->
     return unless @showEndingTime()
-
     left = _.find [1, 7, 14, 30], (day) => day >= @model.daysToEnd()
     @$el.toggleClass("left-#{left}", state) if left?
 
@@ -38,8 +37,7 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
 
   highlightNotBillable: (state) ->
     return unless @showNotBillable()
-
-    @$el.toggleClass("not-billable", state)
+    @$('span.icon').toggleClass("not-billable glyphicon glyphicon-exclamation-sign", state)
 
   showNotBillable: ->
     @model.hasTechnicalRole(@role) && !@model.isBillable()

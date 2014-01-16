@@ -9,6 +9,7 @@ class Hrguru.Views.Dashboard.UnstartedMembership extends Hrguru.Views.Dashboard.
     @listenTo(Backbone, 'memberships:showNext', @showNext)
     @hidden_by_next = true
     @hidden_by_role = false
+    @listenTo(Backbone, 'memberships:highlightNotBillable', @highlightNotBillable)
 
   showNext: (state) ->
     @hidden_by_next = !state
@@ -17,3 +18,10 @@ class Hrguru.Views.Dashboard.UnstartedMembership extends Hrguru.Views.Dashboard.
   toggleVisibility: (ids) ->
     @hidden_by_role = ids.length > 0 && !(@model.get('role_id') in ids)
     @$el.toggleClass('hide', @hidden_by_role) unless @hidden_by_next
+
+  highlightNotBillable: (state) ->
+    return unless @showNotBillable()
+    @$('span.icon').toggleClass("not-billable glyphicon glyphicon-exclamation-sign", state)
+
+  showNotBillable: ->
+    @model.hasTechnicalRole(@role) && !@model.isBillable()
