@@ -12,6 +12,7 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
   render: ->
     @initializeRoleFilter()
     @initializeProjectFilter()
+    @setupForCheckboxStates()
 
   initializeProjectFilter: ->
     projects_selectize = @$('input[name=projects]').selectize
@@ -38,6 +39,11 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
       onItemAdd: @filterRoles
       onItemRemove: @filterRoles
     @roles_selectize = roles_selectize[0].selectize
+
+  setupForCheckboxStates: ->
+    $('#highlight-ending').trigger 'change'
+    $('#show-next').trigger 'change'
+    $('#highlight-not-billable').trigger 'change'
 
   filterProjects: =>
     Backbone.trigger('projects:toggleVisibility', @projects_selectize.items)
