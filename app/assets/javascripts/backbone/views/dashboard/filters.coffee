@@ -5,6 +5,7 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
   events:
     'change #highlight-ending' : 'highlightEndingChanged'
     'change #show-next' : 'showNextChanged'
+    'change #highlight-not-billable' : 'highlightNotBillableChanged'
 
   initialize: (@projects, @roles) ->
 
@@ -49,3 +50,6 @@ class Hrguru.Views.Dashboard.Filters extends Backbone.View
 
   showNextChanged: (event) ->
     Backbone.trigger('memberships:showNext', event.currentTarget.checked)
+
+  highlightNotBillableChanged: (event) ->
+    Backbone.trigger('memberships:highlightNotBillable', event.currentTarget.checked)

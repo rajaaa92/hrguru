@@ -64,6 +64,8 @@ body.dashboard {
           &.left-14 { background: lighten($left-time-red, 40); }
           &.left-30 { background: lighten($left-time-red, 55); }
 
+          &.not-billable { border-right: 4px solid green; }
+
           &.unstarted {
             .time { display: block; }
           }

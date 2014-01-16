@@ -10,6 +10,7 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
     super()
     @user = @options.users.get(@model.get('user_id'))
     @listenTo(Backbone, 'memberships:highlightEnding', @highlightEnding)
+    @listenTo(Backbone, 'memberships:highlightNotBillable', @highlightNotBillable)
 
   serializeData: ->
     $.extend(super, { show_time: @showEndingTime() })
@@ -34,3 +35,11 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
 
   showEndingTime: ->
     @model.started() && @model.daysToEnd()?
+
+  highlightNotBillable: (state) ->
+    return unless @showNotBillable()
+
+    @$el.toggleClass("not-billable", state)
+
+  showNotBillable: ->
+    @model.hasTechnicalRole(@role) && !@model.isBillable()

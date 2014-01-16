@@ -7,6 +7,14 @@ class Hrguru.Models.Membership extends Backbone.Model
     return null unless @get('to')?
     moment(@get('to')).diff(H.currentTime(), 'days')
 
+  hasTechnicalRole: (role) ->
+    role_name = role.get('name')
+    return null unless role_name?
+    _.contains ['developer', 'senior', 'junior', 'praktykant'], role_name
+
+  isBillable: ->
+    @get('billable')
+
 class Hrguru.Collections.Memberships extends Backbone.Collection
   model: Hrguru.Models.Membership
   url: Routes.memberships_path()
