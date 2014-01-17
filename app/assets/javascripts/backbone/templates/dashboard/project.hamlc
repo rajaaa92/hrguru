@@ -1,4 +1,4 @@
-.project-name= @name
+.project-name!= @link_to @name, Routes.project_path(@id)
   .billable_ratio
 .memberships
 .new-membership
