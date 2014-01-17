@@ -26,7 +26,6 @@ class Hrguru.Views.Dashboard.Project extends Marionette.CompositeView
 
   getItemView: (item) ->
     name = switch
-      when item.get('fake') then 'FakeMembership'
       when !item.started() then 'UnstartedMembership'
       else 'Membership'
     Hrguru.Views.Dashboard[name]
