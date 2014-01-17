@@ -16,6 +16,8 @@
             .col-sm-6
               = f.input :to, as: :date_picker, wrapper: :prepend, label_html: { class: 'input-group-addon' }
               = f.association :role, collection: roles, include_blank: false
+            .col-sm-6
+              = f.input :billable, as: :boolean
               .hidden= f.input :user_id
           .actions
             = f.button :submit, class: 'btn-success'

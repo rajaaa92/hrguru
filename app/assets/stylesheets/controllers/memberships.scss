@@ -1,5 +1,5 @@
-body.memberships {
-  &.new, &.edit {
+body.memberships, body.users {
+  &.new, &.edit, &.create, &.update, &.show {
     .checkbox{
       margin-top: 0px;
       input {
