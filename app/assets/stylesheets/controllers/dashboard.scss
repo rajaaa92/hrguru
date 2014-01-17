@@ -9,13 +9,35 @@ body.dashboard {
       width: 955px;
       .roles, .projects {
         width: 400px;
-        display: inline-block;
+        display: table-row-group;
       }
-
       .checkboxes {
         display: inline-block;
         margin-right: 20px;
         float: left;
+        .checkbox {
+          margin-top: 5px;
+          margin-bottom: 5px;
+          font-size: 0.82em;
+          label {
+            vertical-align: sub;
+          }
+        }
+      }
+      .selectize-input {
+        padding: 2px 4px;
+        margin-top: 2px;
+        margin-bottom: 0px;
+        font-size: 1em;
+        min-width: 180px;
+        min-height: 34px;
+        input {
+          font-size: 0.82em;
+          vertical-align: sub;
+        }
+        > div {
+          margin: 2px 4px 2px 0;
+        }
       }
     }
 
@@ -23,6 +45,9 @@ body.dashboard {
       margin-top: 10px;
       padding-bottom: 200px;
       overflow-x: scroll;
+      font-size: 0.9em;
+      float: left;
+      clear: both;
       .project {
         display: table-cell;
 
@@ -91,14 +116,14 @@ body.dashboard {
     }
 
     .new-membership {
-      .selectize-control { height: 36px; }
+      .selectize-control { line-height: 13px; }
       .selectize-input {
         @include box-shadow(none);
         border: 0;
-        padding: 8px;
+        padding: 6px;
+        position: relative;
+        top: 2px;
         input {
-          font-size: 14px;
-          line-height: 16px !important;
         }
       }
       .selectize-dropdown {
