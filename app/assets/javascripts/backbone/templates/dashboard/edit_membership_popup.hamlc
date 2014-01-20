@@ -1,0 +1,22 @@
+.editPopup#{id: @id}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        %h4.modal-title Edit membership
+      .modal-body
+        .form-inline
+          .form-group
+            %input.form-control.date_picker.intern_start
+          .form-group
+            %input.form-control.date_picker.intern_end
+      .input-group
+        .input-group-addon.billable-row
+          .checkbox
+            %label
+              %input.billable{ type: 'checkbox'}
+              = "Billable"
+
+      .modal-footer
+        %a.btn{"data-dismiss" => "modal", href: "#"} Close
+        %a.btn.btn-primary{href: "#"} Save changes

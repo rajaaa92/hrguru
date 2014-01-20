@@ -4,6 +4,18 @@ body.dashboard {
       width: 100%;
     }
 
+    .edit-membership-popup {
+      .editPopup {
+        display: none;
+        .checkbox {
+          text-align: left;
+          label {
+            text-align: left;
+          }
+        }
+      }
+    }
+
     #filters {
       margin: 0 auto;
       width: 955px;

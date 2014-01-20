@@ -33,3 +33,6 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
 
   fillEditPopups: ->
     @memberships.each (membership) =>
+      view = new Hrguru.Views.Dashboard.EditMembershipPopup
+        model: membership
+      @ui.editPopups.append(view.render().$el)
