@@ -13,6 +13,9 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
     @projects = new Hrguru.Collections.Projects(gon.projects)
     @roles = new Hrguru.Collections.Roles(gon.roles)
 
+    @listenTo @memberships, "add", @addEditPopupView, this
+    @listenTo @memberships, "remove", @removeEditPopupView, this
+
     @render()
 
   render: ->
@@ -33,6 +36,12 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
 
   fillEditPopups: ->
     @memberships.each (membership) =>
-      view = new Hrguru.Views.Dashboard.EditMembershipPopup
-        model: membership
-      @ui.editPopups.append(view.render().$el)
+      @addEditPopupView(membership)
+
+  addEditPopupView: (membership) ->
+    view = new Hrguru.Views.Dashboard.EditMembershipPopup
+      model: membership
+    @ui.editPopups.append(view.render().$el)
+
+  removeEditPopupView: (membership) ->
+    @ui.editPopups.find("##{membership.id}").remove()

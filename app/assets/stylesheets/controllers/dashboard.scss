@@ -4,14 +4,12 @@ body.dashboard {
       width: 100%;
     }
 
-    .edit-membership-popup {
-      .editPopup {
-        display: none;
-        .checkbox {
+    .editPopup {
+      display: none;
+      .checkbox {
+        text-align: left;
+        label {
           text-align: left;
-          label {
-            text-align: left;
-          }
         }
       }
     }
