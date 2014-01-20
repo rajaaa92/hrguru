@@ -1,6 +1,7 @@
 .role-indicator{ style: "background: #{@color}" }
 %span.name!= @link_to @user.name, Routes.user_path(@user.id)
 %span.icon
+!= @icon_edit
 %span.remove &times;
 - if @show_time
   .time

@@ -22,4 +22,10 @@ class MembershipDecorator < Draper::Decorator
     range << " ... #{to.to_date}" if to
     h.raw range
   end
+
+  def icon_edit(options = {})
+    h.link_to "##{options[:id]}", data: {toggle: 'modal'}, class: 'edit' do
+      h.fa_icon('pencil-square-o')
+    end
+  end
 end

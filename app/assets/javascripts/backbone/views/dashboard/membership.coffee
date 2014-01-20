@@ -5,16 +5,21 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
 
   events:
     'click .remove' : 'finishMembership'
+    'click .edit' : 'editMembership'
 
   initialize: ->
     super()
     @user = @options.users.get(@model.get('user_id'))
     @listenTo(Backbone, 'memberships:highlightEnding', @highlightEnding)
     @listenTo(Backbone, 'memberships:highlightNotBillable', @highlightNotBillable)
+    $("#{@model.get('id')}").modal
 
   serializeData: ->
 
     $.extend(super, { show_time: @showEndingTime(), color: @roleColor() })
+
+  editMembership: (event) ->
+    $("#{@model.get('id')}").show()
 
   finishMembership: (event) ->
     to = H.currentTime().format()

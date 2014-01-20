@@ -4,6 +4,7 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
 
   ui:
     table: '#projects-users'
+    editPopups:'#edit-membership-popups'
 
   initialize: ->
     @now = moment()
@@ -19,6 +20,7 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
     @fillTable()
     filters_view = new Hrguru.Views.Dashboard.Filters(@projects, @roles)
     filters_view.render()
+    @fillEditPopups()
 
   fillTable: ->
     @projects.each (project) =>
@@ -28,3 +30,6 @@ class Hrguru.Views.DashboardIndex extends Marionette.View
         roles: @roles
         users: @users
       @ui.table.append(view.render().$el)
+
+  fillEditPopups: ->
+    @memberships.each (membership) =>
