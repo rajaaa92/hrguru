@@ -15,10 +15,10 @@ class Hrguru.Views.Dashboard.Membership extends Hrguru.Views.Dashboard.BaseMembe
     $("#{@model.get('id')}").modal
 
   serializeData: ->
-
     $.extend(super, { show_time: @showEndingTime(), color: @roleColor() })
 
   editMembership: (event) ->
+    Backbone.trigger "membership:editMembership"
     $("#{@model.get('id')}").show()
 
   finishMembership: (event) ->

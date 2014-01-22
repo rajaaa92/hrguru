@@ -4,13 +4,19 @@
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
       %h4.modal-title Edit membership
     .modal-body
-      .form-inline
-        .form-group
-          %input.form-control.date_picker.intern_start
-        .form-group
-          %input.form-control.date_picker.intern_end
-    .input-group
-      .input-group-addon.billable-row
+      .form-group.date
+        .input-group
+          %label.date_picker.required.control-label.input-group-addon{for: "membership_from"}
+            %abbr{title: "required"} *
+            From
+          %input.form-control.date_picker.from
+      .form-group.date
+        .input-group
+          %label.date_picker.required.control-label.input-group-addon{for: "membership_from"}
+            %abbr{title: "required"} *
+            To
+          %input.form-control.date_picker.to
+      .form-group
         .checkbox
           %label
             %input.billable{ type: 'checkbox'}
@@ -18,4 +24,4 @@
 
     .modal-footer
       %a.btn{"data-dismiss" => "modal", href: "#"} Close
-      %a.btn.btn-primary{href: "#"} Save changes
+      %a.btn.btn-primary.submit{href: "#"} Save changes

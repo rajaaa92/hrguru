@@ -10,6 +10,10 @@ body.dashboard {
         position: absolute !important;
         left: 50%;
         margin-left: -300px;
+        .form-group.date {
+          display: inline-block;
+          width: 45%;
+        }
         .checkbox {
           text-align: left;
           label {
