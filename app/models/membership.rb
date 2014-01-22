@@ -16,7 +16,6 @@ class Membership
   validates :from, presence: true
   validates :billable, inclusion: { in: [true, false] }
 
-
   validate :validate_from_to
   validate :validate_duplicate_project
 
@@ -44,7 +43,7 @@ class Membership
   private
 
   def validate_from_to
-    if to.present? && from > to
+    if from.present? && to.present? && from > to
       errors.add(:to, "can't be before from date")
     end
   end

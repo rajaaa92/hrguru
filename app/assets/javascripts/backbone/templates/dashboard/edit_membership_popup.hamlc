@@ -13,7 +13,6 @@
       .form-group.date
         .input-group
           %label.date_picker.required.control-label.input-group-addon{for: "membership_from"}
-            %abbr{title: "required"} *
             To
           %input.form-control.date_picker.to
       .form-group
@@ -23,5 +22,5 @@
             = "Billable"
 
     .modal-footer
-      %a.btn{"data-dismiss" => "modal", href: "#"} Close
+      %a.btn.close_btn{"data-dismiss" => "modal", href: "#"} Close
       %a.btn.btn-primary.submit{href: "#"} Save changes
