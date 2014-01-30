@@ -6,6 +6,8 @@ gem 'rollbar'
 gem 'google-analytics-rails'
 gem 'newrelic_rpm'
 
+gem 'konf'
+
 gem 'mongoid', github: 'mongoid/mongoid', ref: '054825f'
 gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
 gem 'mongoid_orderable'
@@ -36,8 +38,6 @@ gem 'simple_form'
 gem 'selectize-rails'
 gem 'font-awesome-rails'
 gem 'messengerjs-rails'
-
-gem 'konf'
 
 group :development do
   gem 'better_errors'
