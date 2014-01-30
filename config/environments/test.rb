@@ -33,5 +33,4 @@ Hrguru::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  config.middleware.use Netguru::Middleware::Block, auth_codes: ['bf51849c2']
 end
