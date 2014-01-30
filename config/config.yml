@@ -12,3 +12,7 @@ staging:
   <<: *defaults
 production:
   <<: *defaults
+  google_client_id: ala_ma_kota
+  google_secret: a_kot_ma_ale
+  github_client_id: ala_ma_kota
+  github_secret: a_kot_ma_ale
