@@ -1,9 +1,10 @@
 class User
   include Mongoid::Document
+  devise :database_authenticatable, :registerable,
+         :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :github]
+
   include Mongoid::Timestamps
   include Mongoid::Paranoia
-
-  devise :database_authenticatable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :github]
 
   field :encrypted_password
   field :sign_in_count, type: Integer, default: 0

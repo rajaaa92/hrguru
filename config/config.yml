@@ -1,18 +1,14 @@
 defaults: &defaults
   some_normal_config: true
+  google_client_id: ala_ma_kota
+  google_secret: a_kot_ma_ale
+  github_client_id: ala_ma_kota
+  github_secret: a_kot_ma_ale
 development:
   <<: *defaults
 test:
   <<: *defaults
-  google_client_id: ala_ma_kota
-  google_secret: a_kot_ma_ale
-  github_client_id: ala_ma_kota
-  github_secret: a_kot_ma_ale
 staging:
   <<: *defaults
 production:
   <<: *defaults
-  google_client_id: ala_ma_kota
-  google_secret: a_kot_ma_ale
-  github_client_id: ala_ma_kota
-  github_secret: a_kot_ma_ale

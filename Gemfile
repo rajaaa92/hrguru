@@ -38,7 +38,6 @@ gem 'font-awesome-rails'
 gem 'messengerjs-rails'
 
 gem 'konf'
-gem 'checker'
 
 group :development do
   gem 'better_errors'
