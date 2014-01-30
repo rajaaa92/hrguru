@@ -19,9 +19,11 @@ staging:
       hosts:
         - localhost:27017
 
-production:
-  sessions:
-    default:
-      database: hrguru_production
-      hosts:
-        - localhost:27017
+<% if ENV['MONGOHQ_URL'] %>
+  production:
+    sessions:
+      default:
+        uri: <%= ENV['MONGOHQ_URL'] %>
+        options:
+          safe: true
+<% end %>
