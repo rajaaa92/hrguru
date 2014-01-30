@@ -19,11 +19,7 @@ staging:
       hosts:
         - localhost:27017
 
-<% if ENV['MONGOHQ_URL'] %>
-  production:
-    sessions:
-      default:
-        uri: <%= ENV['MONGOHQ_URL'] %>
-        options:
-          safe: true
-<% end %>
+production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
