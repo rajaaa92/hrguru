@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 ruby "2.0.0"
 
 gem 'rails', '4.0.2'
-gem 'netguru', github: 'netguru/netguru'
 gem 'rollbar'
 gem 'google-analytics-rails'
 gem 'newrelic_rpm'
@@ -37,6 +36,9 @@ gem 'simple_form'
 gem 'selectize-rails'
 gem 'font-awesome-rails'
 gem 'messengerjs-rails'
+
+gem 'konf'
+gem 'checker'
 
 group :development do
   gem 'better_errors'

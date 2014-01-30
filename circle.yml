@@ -2,4 +2,4 @@ deployment:
   master:
     branch: master
     heroku:
-      appname: ngpeople
+      appname: ng-people
