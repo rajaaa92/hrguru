@@ -2,7 +2,6 @@
 task :production do
   set :stage, 'production'
   set :webserver, "netguru.p.netguru.co"
-  before 'deploy:update', 'netguru:backup'
 end
 
 set :application, "hrguru"
@@ -12,7 +11,5 @@ set :rvm_ruby_string, "2.0.0-p353"
 
 set :gateway, "hrguru@s.netguru.co" unless exists?(:gateway)
 set :webserver, "s.netguru.co"
-
-require 'netguru/capistrano'
 
 after "deploy:update_code", "netguru:precompile"
