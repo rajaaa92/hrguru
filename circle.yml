@@ -1,10 +1,5 @@
 deployment:
   master:
     branch: master
-    commands:
-      - bundle exec cap deploy
-  production:
-    branch: production
-    commands:
-      - bundle exec cap production deploy:
-          timeout: 600
+    heroku:
+      appname: ngpeople
